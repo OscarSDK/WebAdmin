@@ -18,6 +18,12 @@
 						<li><a class="ajax-link" href="ajax/user_list.php">List of user</a></li>
 					</ul>
 				</li>
+				<li>
+					<a href="controller/logout.php" class="dropdown-toggle">
+						<i class="fa fa-power-off"></i>
+						<span class="hidden-xs">Logout</span>
+					</a>
+				</li>
 			</ul>
 		</div>
 		<!--Start Content-->

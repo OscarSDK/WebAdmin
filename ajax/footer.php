@@ -2,6 +2,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--<script src="http://code.jquery.com/jquery.js"></script>-->
 <script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/toast/javascript/jquery.toastmessage.js"></script>
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="plugins/bootstrap/bootstrap.min.js"></script>

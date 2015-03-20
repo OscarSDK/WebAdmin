@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION["api_key"])) {
+	header('Location: ajax/login.php');
+	die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -17,6 +25,7 @@
 		<link href="plugins/justified-gallery/justifiedGallery.css" rel="stylesheet">
 		<link href="css/style_v2.css" rel="stylesheet">
 		<link href="plugins/chartist/chartist.min.css" rel="stylesheet">
+		<link href="plugins/toast/resources/css/jquery.toastmessage.css" rel="stylesheet">
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 				<script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
@@ -125,9 +134,9 @@
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="controller/logout.php">
 											<i class="fa fa-power-off"></i>
-											<span>Logout</span>
+											<span>Đăng xuất</span>
 										</a>
 									</li>
 								</ul>
