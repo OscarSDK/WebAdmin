@@ -67,32 +67,21 @@ session_start();
 							<td><?php echo $value->{'phone'}==NULL?' ':$value->{'phone'} ?></td>
 							<td><?php echo $value->{'personalID'}==NULL?' ':$value->{'personalID'} ?></td>
 							<td><?php 
-									if ($value->{'status'}==2) {
+									$percent = round($value->{'status'}/6*100);
+									if ($percent <= 33) {
+										$color = 'progress-bar-danger';
+									} else if ($percent <= 66) {
+										$color = 'progress-bar-warning';
+									} else {
+										$color = 'progress-bar-success';
+									}
 								?>		
 								<div class="progress">
-									<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-										<span>66%</span>
+									<div class="progress-bar <?php echo $color ?>" role="progressbar" aria-valuenow="<?php echo $percent ?>" 
+											aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent ?>%;">
+										<span><?php echo $percent ?>%</span>
 									</div>
 								</div>
-								<?php
-									} else if ($value->{'status'}==3) {
-								?>
-								<div class="progress">
-									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-										<span>100%</span>
-									</div>
-								</div>
-								<?php
-									} else {
-								?>
-								<div class="progress">
-									<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 33%;">
-										<span>33%</span>
-									</div>
-								</div>
-								<?php
-									}
-								?>
 							</td>
 							<td><a href="controller/user.php?user_id=<?php echo $value->{'user_id'} ?>&act=view" 
 									class="btn btn-primary btn-app-sm btn-circle"><i class="fa fa-eye"></i></a>
