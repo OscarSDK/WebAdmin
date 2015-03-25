@@ -166,8 +166,20 @@ if (!isset($_SESSION["api_key"])) {
 						<span class="hidden-xs">Quản lí người dùng</span>
 					</a>
 				</li>
+				<li class="dropdown">
+					<a href="ajax/map.php" class="ajax-link">
+						<i class="fa fa-bar-chart-o"></i>
+						<span class="hidden-xs">Bản đồ</span>
+					</a>
+				</li>
 				<li>
-					<a href="controller/logout.php" class="dropdown-toggle">
+					<a id="locked-screen" class="submenu" href="#">
+						<i class="fa fa-power-off"></i>
+						<span class="hidden-xs">Khóa màn hình</span>
+					</a>
+				</li>
+				<li>
+					<a href="controller/logout.php">
 						<i class="fa fa-power-off"></i>
 						<span class="hidden-xs">Đăng xuất</span>
 					</a>

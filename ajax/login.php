@@ -9,7 +9,7 @@ if (isset($_SESSION["api_key"])) {
 <html lang="vi">
 	<head>
 		<meta charset="utf-8">
-		<title>RideSharing - Login Page</title>
+		<title>RideSharing - Đăng nhập hệ thống</title>
 		<meta name="description" content="description">
 		<meta name="author" content="Evgeniya">
 		<meta name="keyword" content="keywords">

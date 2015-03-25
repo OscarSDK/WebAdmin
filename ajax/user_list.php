@@ -27,12 +27,12 @@ session_start();
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>
-							<th>No</th>
-							<th>Full Name</th>
+							<th>STT</th>
+							<th>Họ tên</th>
 							<th>Email</th>
-							<th>Phone</th>
-							<th>Personal ID</th>
-							<th>Status</th>
+							<th>Điện thoại</th>
+							<th>CMND</th>
+							<th>Cấp độ</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -84,8 +84,6 @@ session_start();
 								</div>
 							</td>
 							<td><a href="controller/user.php?user_id=<?php echo $value->{'user_id'} ?>&act=view" 
-									class="btn btn-primary btn-app-sm btn-circle"><i class="fa fa-eye"></i></a>
-								<a href="controller/user.php?user_id=<?php echo $value->{'user_id'} ?>&act=edit" 
 									class="btn btn-warning btn-app-sm btn-circle"><i class="fa fa-edit"></i></a>
 								<a href="controller/user.php?user_id=<?php echo $value->{'user_id'} ?>&act=delete" 
 									class="btn btn-danger btn-app-sm btn-circle"><i class="fa fa-trash-o"></i></a> 
@@ -123,14 +121,14 @@ $(document).ready(function() {
 });
 </script>
 <script type="text/javascript">
-	$(document).ready(function () {
-	    <?php 
-			if (isset($_SESSION["message"])) {
-		?>
-	    $().toastmessage('showSuccessToast', '<?php echo $_SESSION["message"] ?>')
-	    <?php
-	    		$_SESSION["message"] = null;
-			}
-		?>
+$(document).ready(function () {
+    <?php 
+		if (isset($_SESSION["message"])) {
+	?>
+    $().toastmessage('showSuccessToast', '<?php echo $_SESSION["message"] ?>')
+    <?php
+    		$_SESSION["message"] = null;
+		}
+	?>
 })
 </script>
