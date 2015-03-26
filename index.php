@@ -155,9 +155,9 @@ if (!isset($_SESSION["api_key"])) {
 		<div id="sidebar-left" class="col-xs-2 col-sm-2">
 			<ul class="nav main-menu">
 				<li>
-					<a href="ajax/dashboard.html" class="ajax-link">
+					<a href="ajax/dashboard.php" class="ajax-link">
 						<i class="fa fa-dashboard"></i>
-						<span class="hidden-xs">Dashboard</span>
+						<span class="hidden-xs">Trang chủ</span>
 					</a>
 				</li>
 				<li class="dropdown">

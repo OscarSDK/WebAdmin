@@ -35,7 +35,7 @@ if ((isset($_GET['act']) && isset($_GET['user_id'])) || (isset($_POST['act']) &&
 	} else if ($act == 'edit') {
 		$locked = isset($_POST['locked'])?1:0;
 		$status = $_POST['status'];
-		$status = isset($_POST['identify'])?4:$status;
+		$status = isset($_POST['identify'])?4:$status==4?3:$status;
 
 		$data = array(
 			'locked' => $locked,
@@ -89,14 +89,14 @@ if ((isset($_GET['act']) && isset($_GET['user_id'])) || (isset($_POST['act']) &&
 			$_SESSION['message'] = $json->{'message'};
 		}
 
-		header('Location: ../index.php#ajax/user_edit.php');
+		header('Location: ../index.php#ajax/user_list.php');
 		die();
 	} else {
-		header('Location: ../index.php');
+		header('Location: ../index.php#ajax/user_list.php');
 		die();
 	}
 } else {
-	header('Location: ../index.php');
+	header('Location: ../index.php#ajax/user_list.php');
 	die();
 }
 ?>

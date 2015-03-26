@@ -67,7 +67,7 @@ session_start();
 							<td><?php echo $value->{'phone'}==NULL?' ':$value->{'phone'} ?></td>
 							<td><?php echo $value->{'personalID'}==NULL?' ':$value->{'personalID'} ?></td>
 							<td><?php 
-									$percent = round($value->{'status'}/6*100);
+									$percent = round($value->{'status'}/4*100);
 									if ($percent <= 33) {
 										$color = 'progress-bar-danger';
 									} else if ($percent <= 66) {
