@@ -85,7 +85,7 @@
 								<div class="col-sm-6">
 									<div class="toggle-switch toggle-switch-success">
 										<label>
-											<input <?php echo $user['status']==4?'checked':'' ?> type="checkbox" name="indentify">
+											<input <?php echo $user['status']==4?'checked':'' ?> type="checkbox" name="identify">
 											<div class="toggle-switch-inner"></div>
 											<div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
 										</label>

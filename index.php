@@ -217,6 +217,7 @@ if (!isset($_SESSION["api_key"])) {
 <script src="plugins/justified-gallery/jquery.justifiedGallery.min.js"></script>
 <script src="plugins/tinymce/tinymce.min.js"></script>
 <script src="plugins/tinymce/jquery.tinymce.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>
 <!-- All functions for this theme + document.ready processing -->
 <script src="js/devoops.js"></script>
 </body>
