@@ -1,0 +1,103 @@
+<?php
+session_start();
+if (!isset($_SESSION["api_key"])) {
+	header('Location: ../ajax/login.php');
+	die();
+}
+
+if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act']) && isset($_POST['itinerary_id']))) {
+	$act = !isset($_GET['act'])?$_POST['act']:$_GET['act'];
+	$itinerary_id = !isset($_GET['act'])?$_POST['itinerary_id']:$_GET['itinerary_id'];
+
+	if ($act == 'view') {
+		$api_key = $_SESSION["api_key"];
+
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, "http://192.168.10.74/RESTFul/v1/staff/itinerary/".$itinerary_id);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
+
+		// execute the request
+		$result = curl_exec($ch);
+
+		// close curl resource to free up system resources
+		curl_close($ch);
+		$itinerary = json_decode($result, true);
+		//$user['user_id'] = $user_id;
+
+		if(isset($itinerary)) {
+			$_SESSION['itinerary'] = $itinerary;
+		}
+		
+		header('Location: ../index.php#ajax/itinerary_edit.php');
+		die();
+	} else if ($act == 'edit') {
+		//$locked = isset($_POST['locked'])?1:0;
+		//$status = $_POST['status'];
+		
+		//$status = isset($_POST['identify'])?4:$status==4?3:$status;
+
+		//$data = array(
+		//	'locked' => $locked,
+		//	'status' => $status
+		//	);
+
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, "http://192.168.10.74/RESTFul/v1/staff/itinerary/".$itinerary_id);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
+		//curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($data));
+
+		// execute the request
+		$result = curl_exec($ch);
+
+		// close curl resource to free up system resources
+		curl_close($ch);
+
+		$json = json_decode($result);
+
+		if (!$json->{'error'}) {
+			$_SESSION['message'] = $json->{'message'};
+		} else {
+			$_SESSION['message'] = $json->{'message'};
+		}
+
+		header('Location: ../index.php#ajax/user_list.php');
+		die();
+	} else if ($act == 'delete') {
+		//Initial curl
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, "http://localhost/RESTFul/v1/staff/itinerary/".$itinerary_id);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
+
+		// execute the request
+		$result = curl_exec($ch);
+
+		// close curl resource to free up system resources
+		curl_close($ch);
+
+		$json = json_decode($result);
+
+		if (!$json->{'error'}) {
+			$_SESSION['message'] = $json->{'message'};
+		} else {
+			$_SESSION['message'] = $json->{'message'};
+		}
+
+		header('Location: ../index.php#ajax/itinerary_list.php');
+		die();
+	} else {
+		header('Location: ../index.php#ajax/itinerary_list.php');
+		die();
+	}
+} else {
+	header('Location: ../index.php#ajax/itinerary_list.php');
+	die();
+}
+?>
