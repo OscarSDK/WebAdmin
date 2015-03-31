@@ -16,7 +16,7 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 
 		curl_setopt($ch, CURLOPT_URL, "http://192.168.10.74/RESTFul/v1/staff/itinerary/".$itinerary_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
+		//curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
 		// execute the request
 		$result = curl_exec($ch);
@@ -24,24 +24,28 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 		// close curl resource to free up system resources
 		curl_close($ch);
 		$itinerary = json_decode($result, true);
-		//$user['user_id'] = $user_id;
+		//$itinerary['itinerary_id'] = $itinerary_id;
 
 		if(isset($itinerary)) {
 			$_SESSION['itinerary'] = $itinerary;
+			//echo "here"; 
 		}
-		
+		//echo "result";
+		//echo $itinerary_id;
+		//print_r($result);
+		//print_r($itinerary);
 		header('Location: ../index.php#ajax/itinerary_edit.php');
 		die();
 	} else if ($act == 'edit') {
-		//$locked = isset($_POST['locked'])?1:0;
-		//$status = $_POST['status'];
+		$locked = isset($_POST['locked'])?1:0;
+		$status = $_POST['status'];
 		
-		//$status = isset($_POST['identify'])?4:$status==4?3:$status;
+		$status = isset($_POST['identify'])?4:$status==4?3:$status;
 
-		//$data = array(
-		//	'locked' => $locked,
-		//	'status' => $status
-		//	);
+		$data = array(
+			'locked' => $locked,
+			'status' => $status
+			);
 
 		$ch = curl_init();
 
@@ -49,7 +53,7 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
-		//curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($data));
+		curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($data));
 
 		// execute the request
 		$result = curl_exec($ch);
@@ -59,30 +63,7 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 
 		$json = json_decode($result);
 
-		if (!$json->{'error'}) {
-			$_SESSION['message'] = $json->{'message'};
-		} else {
-			$_SESSION['message'] = $json->{'message'};
-		}
 
-		header('Location: ../index.php#ajax/user_list.php');
-		die();
-	} else if ($act == 'delete') {
-		//Initial curl
-		$ch = curl_init();
-
-		curl_setopt($ch, CURLOPT_URL, "http://localhost/RESTFul/v1/staff/itinerary/".$itinerary_id);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
-
-		// execute the request
-		$result = curl_exec($ch);
-
-		// close curl resource to free up system resources
-		curl_close($ch);
-
-		$json = json_decode($result);
 
 		if (!$json->{'error'}) {
 			$_SESSION['message'] = $json->{'message'};
@@ -92,6 +73,39 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 
 		header('Location: ../index.php#ajax/itinerary_list.php');
 		die();
+	} else if ($act == 'delete') {
+		echo $itinerary_id;
+		echo "quay len";
+		//Initial curl
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, "http://192.168.10.74/RESTFul/v1/staff/itinerary/".$itinerary_id);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+		//curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
+
+		// execute the request
+		$result = curl_exec($ch);
+
+		// close curl resource to free up system resources
+		curl_close($ch);
+
+		$json = json_decode($result);
+
+		echo $_SESSION['api_key'];
+		print_r($itinerary_id);
+		//echo $ch;
+		print_r($json);
+
+		//if (!$json->{'error'}) {
+		//	$_SESSION['message'] = $json->{'message'};
+		//} else {
+		//	$_SESSION['message'] = $json->{'message'};
+		//}
+
+		echo "right h";
+
+		//header('Location: ../index.php#ajax/itinerary_list.php');
+		//die();
 	} else {
 		header('Location: ../index.php#ajax/itinerary_list.php');
 		die();

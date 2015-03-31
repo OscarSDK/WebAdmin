@@ -11,6 +11,8 @@
 	} else {
 		$itinerary = $_SESSION["itinerary"];
 	}
+
+	print_r($itinerary) ;
 ?>
 
 <div class="row">
@@ -20,7 +22,7 @@
 		</a>
 		<ol class="breadcrumb pull-left">
 			<li><a href="index.html">Trang chủ</a></li>
-			<li><a href="#">Người dùng</a></li>
+			<li><a href="#">Hành Trình</a></li>
 			<li><a href="#">Sửa thông tin</a></li>
 		</ol>
 		<div id="social" class="pull-right">
@@ -43,29 +45,52 @@
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Tài Xế:</label>
 								<div class="col-sm-6">
-								<input disabled type="text" class="form-control" placeholder="Full name" value="<?php echo 
-										$itinerary['fullname'] ?>"
+								<input disabled type="text" class="form-control" placeholder="Full name" value="<?php echo $itinerary['fullname'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Tài Xế" name="fullname">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" style="text-align:left">hành Khách:</label>
+								<div class="col-sm-6">
+								<input disabled type="text" class="form-control" placeholder="Full name" value="<?php echo $itinerary['fullname'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Họ và tên" name="fullname">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Điểm Đi:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Last name" value="<?php echo $itinerary['phone'] ?>"
+									<input disabled type="text" class="form-control" placeholder="Last name" value="<?php echo 
+										$itinerary['start_address'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Số điện thoại" name="phone">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" style="text-align:left">Tọa Độ Đi:</label>
+								<div class="col-sm-6">
+									<input disabled type="text" class="form-control" placeholder="Last name" value="<?php echo 
+										$itinerary['start_address'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Số điện thoại" name="phone">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Điểm Đến:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Email" value="<?php echo $itinerary['email'] ?>"
+									<input disabled type="text" class="form-control" placeholder="Email" value="<?php echo $itinerary['end_address'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Địa chỉ email" name="email">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Chứng minh nhân dân:</label>
+								<label class="col-sm-4 control-label" style="text-align:left">Tọa Độ Đến:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Chứng minh nhân dân" value="<?php echo $itinerary['personalID'] ?>"
+									<input disabled type="text" class="form-control" placeholder="Last name" value="<?php echo 
+										$itinerary['start_address'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Số điện thoại" name="phone">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" style="text-align:left">Thời Gian:</label>
+								<div class="col-sm-6">
+									<input disabled type="text" class="form-control" placeholder="Chứng minh nhân dân" value="<?php echo $itinerary['leave_time'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Chứng minh nhân dân" name="personalID">
 								</div>
 								<div class="col-sm-1">
@@ -75,7 +100,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Ngày Khởi Hành:</label>
+								<label class="col-sm-4 control-label" style="text-align:left">Ngày tạo tài khoản:</label>
 								<div class="col-sm-6">
 									<input type="text" class="form-control" value="<?php echo $itinerary['created_at'] ?>"
 									disabled data-toggle="tooltip" data-placement="bottom" title="Ngày tạo tài khoản">

@@ -72,20 +72,22 @@ session_start();
 							<td><?php echo $value->{'leave_date'}==NULL?' ':$value->{'leave_date'} ?></td>
 							<td><?php 
 									//$percent = round($value->{'status'}/4*100);
+									$status = 'No definition';
 									if ($value->{'status'} == 1) {
 										$status = 'Not Accepted';
 									} else if ($value->{'status'} == 2) {
-										$status = 'Accepted';
+										//$status = 'Accepted';
 									} else {
-										$status = 'No definition';
+										//$status = 'No definition';
 									}
-									echo $status;
+									echo $value->{'status'};
 								?>		
 								
 							</td>
 							<td><a href="controller/itinerary.php?itinerary_id=<?php echo $value->{'itinerary_id'} ?>&act=view" 
 									class="btn btn-warning btn-app-sm btn-circle"><i class="fa fa-edit"></i></a>
-								<a href="controller/itinerary.php?itinerary_id= <?php echo $value->{'itinerary_id'} ?>&act=delete" 
+								<a href="controller/itinerary.php?itinerary_id=<?php echo $value->{'itinerary_id'} ?>
+									&act=delete" 
 									class="btn btn-danger btn-app-sm btn-circle"><i class="fa fa-trash-o"></i></a> 
 							</td>
 						</tr>

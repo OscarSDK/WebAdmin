@@ -43,7 +43,7 @@ session_start();
 						$api_key = $_SESSION["api_key"];
 						$ch = curl_init();
 
-						curl_setopt($ch, CURLOPT_URL, "http://localhost/RESTFul/v1/staff/user");
+						curl_setopt($ch, CURLOPT_URL, "http://192.168.10.74/RESTFul/v1/staff/user");
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 						curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
