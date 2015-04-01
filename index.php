@@ -167,6 +167,12 @@ if (!isset($_SESSION["api_key"])) {
 					</a>
 				</li>
 				<li class="dropdown">
+					<a href="ajax/itinerary_list.php" class="ajax-link">
+						<i class="fa fa-bar-chart-o"></i>
+						<span class="hidden-xs">Quản lí hành trình</span>
+					</a>
+				</li>
+				<li class="dropdown">
 					<a href="ajax/map.php" class="ajax-link">
 						<i class="fa fa-bar-chart-o"></i>
 						<span class="hidden-xs">Bản đồ</span>
