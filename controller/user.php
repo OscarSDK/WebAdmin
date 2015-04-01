@@ -16,7 +16,7 @@ if ((isset($_GET['act']) && isset($_GET['user_id'])) || (isset($_POST['act']) &&
 
 		curl_setopt($ch, CURLOPT_URL, "http://localhost/RESTFul/v1/staff/user/".$user_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
+		curl_setopt($ch, CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
 		// execute the request
 		$result = curl_exec($ch);
