@@ -7,7 +7,7 @@
 		</div>
 	</div>
 </div>
-
+<script src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>
 <script type="text/javascript">
 //
 // Dynamically load  Leaflet Plugin
@@ -48,6 +48,16 @@ function FullScreenLeafletMap(){
 
 		marker.update();
 	});
+
+	var fb = new Firebase("https://ride-sharing.firebaseio.com/11");
+	//fb.update({ 11: "16.435077,107.631705" });
+
+	fb.on("value", function(snapshot) {
+		var latlng = snapshot.val().split(',');
+		marker.setLatLng([16.435077, 107.631705]);
+		marker.update();
+    	alert(latlng[0]);
+    });
 }
 
 // Load Leaflet library and create map

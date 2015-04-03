@@ -36,7 +36,15 @@ if ((isset($_GET['act']) && isset($_GET['user_id'])) || (isset($_POST['act']) &&
 		$locked = isset($_POST['locked'])?1:0;
 		$status = $_POST['status'];
 		
-		$status = isset($_POST['identify'])?4:$status==4?3:$status;
+		if (isset($_POST['identify'])) {
+			$status = 4;
+		} else {
+			if ($status == 4) {
+				$status = 3;
+			}
+		}
+
+		echo $status;
 
 		$data = array(
 			'locked' => $locked,
