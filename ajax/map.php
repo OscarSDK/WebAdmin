@@ -7,6 +7,7 @@
 		</div>
 	</div>
 </div>
+
 <script type="text/javascript">
 //
 // Dynamically load  Leaflet Plugin
