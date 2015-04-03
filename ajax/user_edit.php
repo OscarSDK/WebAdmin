@@ -85,6 +85,7 @@
 								<div class="col-sm-6">
 									<div class="toggle-switch toggle-switch-success">
 										<label>
+											<input name="status" type="hidden" value="<?php echo $user['status']?>">
 											<input <?php echo $user['status']==4?'checked':'' ?> type="checkbox" name="identify">
 											<div class="toggle-switch-inner"></div>
 											<div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
@@ -126,7 +127,7 @@
 					<div class="clearfix"></div>
 					<div class="form-group">
 						<div class="col-sm-offset-4 col-sm-2">
-							<a href="" type="cancel" class="btn btn-default btn-label-left">
+							<a href="index.php" type="cancel" class="btn btn-default btn-label-left">
 							<span><i class="fa fa-clock-o txt-danger"></i></span>
 								Quay lại
 							</a>
