@@ -1,69 +1,55 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
-  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
-  <link rel="stylesheet" type="text/css" href="/resources/tutorial/css/example.css">
-</head>
-<body>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Tracking people</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>
+    <script>
+    var marker;
+function initialize() {
+  var myLatlng = new google.maps.LatLng(16.437310, 107.628669);
+  var mapOptions = {
+    zoom: 14,
+    center: myLatlng
+  }
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-<!-- CHAT MARKUP -->
-<div class="example-chat l-demo-container">
-  <header>Firebase Chat Demo</header>
-
-  <div class='example-chat-toolbar'>
-    <label for="nameInput">Username:</label>
-    <input type='text' id='nameInput' placeholder='enter a username...'>
-  </div>
-
-  <ul id='example-messages' class="example-chat-messages"></ul>
-
-  <footer>
-    <input type='text' id='messageInput'  placeholder='Type a message...'>
-  </footer>
-</div>
-
-<!-- CHAT JAVACRIPT -->
-<script>
-  // CREATE A REFERENCE TO FIREBASE
-  var messagesRef = new Firebase('https://ridesharing.firebaseio.com/');
-
-  // REGISTER DOM ELEMENTS
-  var messageField = $('#messageInput');
-  var nameField = $('#nameInput');
-  var messageList = $('#example-messages');
-
-  // LISTEN FOR KEYPRESS EVENT
-  messageField.keypress(function (e) {
-    if (e.keyCode == 13) {
-      //FIELD VALUES
-      var username = nameField.val();
-      var message = messageField.val();
-
-      //SAVE DATA TO FIREBASE AND EMPTY FIELD
-      messagesRef.push({name:username, text:message});
-      messageField.val('');
-    }
+  marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Hello World!'
   });
 
-  // Add a callback that is triggered for each chat message.
-  messagesRef.limitToLast(10).on('child_added', function (snapshot) {
-    //GET DATA
-    var data = snapshot.val();
-    var username = data.name || "anonymous";
-    var message = data.text;
-
-    //CREATE ELEMENTS MESSAGE & SANITIZE TEXT
-    var messageElement = $("<li>");
-    var nameElement = $("<strong class='example-chat-username'></strong>")
-    nameElement.text(username);
-    messageElement.text(message).prepend(nameElement);
-
-    //ADD MESSAGE
-    messageList.append(messageElement)
-
-    //SCROLL TO BOTTOM OF MESSAGE LIST
-    messageList[0].scrollTop = messageList[0].scrollHeight;
+  google.maps.event.addListener(marker, 'click', function() {
+    console.log(marker.position.lat());
+    marker.setPosition(new google.maps.LatLng(marker.position.lat() + 0.001, marker.position.lng()));
   });
-</script>
-</body>
+
+  var fb = new Firebase("https://ride-sharing.firebaseio.com/11");
+  //fb.update({ 11: "16.435077,107.631705" });
+
+  fb.on("value", function(snapshot) {
+    var latlng = snapshot.val().split(',');
+      marker.setPosition(new google.maps.LatLng(latlng[0], latlng[1]));
+      console.log(latlng[0] + "&" + latlng[1]);
+    });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
 </html>
+

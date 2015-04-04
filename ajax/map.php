@@ -31,6 +31,7 @@ function LoadLeafletScript(callback){
 // Create Leaflet Fullscreen Map
 //
 function FullScreenLeafletMap(){
+	var i = 0.000005;
 	var map = L.map('full-map').setView([16.435077, 107.631705 ], 13);
 	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -44,7 +45,7 @@ function FullScreenLeafletMap(){
 	var marker = L.marker([16.437310, 107.628669], {icon: myIcon}).addTo(map);
 
 	map.on('click', function(e) {
-	    marker.setLatLng([16.435077, 107.631705]);
+	    marker.setLatLng([16.435077 + i, 107.631705]);
 
 		marker.update();
 	});
@@ -54,8 +55,8 @@ function FullScreenLeafletMap(){
 
 	fb.on("value", function(snapshot) {
 		var latlng = snapshot.val().split(',');
-		marker.setLatLng([16.435077, 107.631705]);
-		marker.update();
+		// marker.setLatLng([latlng[0], latlng[1]]);
+		// marker.update();
     	alert(latlng[0]);
     });
 }

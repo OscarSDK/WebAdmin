@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+require_once '../include/Config.php';
+
 if (isset($_SESSION["api_key"])) {
 	header('Location: ../index.php');
 	die();
@@ -14,7 +17,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 	//Initial curl
 	$ch = curl_init();
 
-	curl_setopt($ch, CURLOPT_URL, "http://192.168.10.74/RESTFul/v1/staff/login");
+	curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/login");
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 

@@ -14,7 +14,7 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, "http://192.168.10.74/RESTFul/v1/staff/itinerary/".$itinerary_id);
+		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/itinerary/".$itinerary_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		//curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
@@ -49,7 +49,7 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, "http://192.168.10.74/RESTFul/v1/staff/itinerary/".$itinerary_id);
+		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/itinerary/".$itinerary_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
@@ -78,7 +78,7 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 		echo "quay len";
 		//Initial curl
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, "http://192.168.10.74/RESTFul/v1/staff/itinerary/".$itinerary_id);
+		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/itinerary/".$itinerary_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
 		//curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
