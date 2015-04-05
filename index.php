@@ -60,7 +60,7 @@ if (!isset($_SESSION["api_key"])) {
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
-				<a href="index.html">DevOOPS v2</a>
+				<a href="index.html">Ride Sharing</a>
 			</div>
 			<div id="top-panel" class="col-xs-12 col-sm-10">
 				<div class="row">
@@ -110,30 +110,6 @@ if (!isset($_SESSION["api_key"])) {
 										</a>
 									</li>
 									<li>
-										<a href="ajax/page_messages.html" class="ajax-link">
-											<i class="fa fa-envelope"></i>
-											<span>Messages</span>
-										</a>
-									</li>
-									<li>
-										<a href="ajax/gallery_simple.html" class="ajax-link">
-											<i class="fa fa-picture-o"></i>
-											<span>Albums</span>
-										</a>
-									</li>
-									<li>
-										<a href="ajax/calendar.html" class="ajax-link">
-											<i class="fa fa-tasks"></i>
-											<span>Tasks</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<i class="fa fa-cog"></i>
-											<span>Settings</span>
-										</a>
-									</li>
-									<li>
 										<a href="controller/logout.php">
 											<i class="fa fa-power-off"></i>
 											<span>Đăng xuất</span>
@@ -176,6 +152,12 @@ if (!isset($_SESSION["api_key"])) {
 					<a href="ajax/map.php" class="ajax-link">
 						<i class="fa fa-bar-chart-o"></i>
 						<span class="hidden-xs">Bản đồ</span>
+					</a>
+				</li>
+				<li class="dropdown">
+					<a href="ajax/statistic.php" class="ajax-link">
+						<i class="fa fa-bar-chart-o"></i>
+						<span class="hidden-xs">Thống kê</span>
 					</a>
 				</li>
 				<li>

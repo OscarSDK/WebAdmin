@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../include/Config.php';
 ?>
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12">

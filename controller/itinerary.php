@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../include/Config.php';
 if (!isset($_SESSION["api_key"])) {
 	header('Location: ../ajax/login.php');
 	die();
