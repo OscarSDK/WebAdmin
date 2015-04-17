@@ -1,3 +1,4 @@
 <?php
-echo abs(16.0609698 - 16.0588253) + abs(108.2216405 - 108.2062661)
+session_start();
+print_r($_SESSION["lang"]);
 ?>

@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (isset($_GET["lang"])) {
+	$_SESSION["lang"] = $_GET["lang"];
+}
 if (!isset($_SESSION["api_key"])) {
 	header('Location: ajax/login.php');
 	die();
@@ -7,7 +10,7 @@ if (!isset($_SESSION["api_key"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 	<head>
 		<meta charset="utf-8">
 		<title>RideSharing - Quản trị hệ thống</title>
@@ -60,7 +63,7 @@ if (!isset($_SESSION["api_key"])) {
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
-				<a href="index.html">Ride Sharing</a>
+				<a href="">Ride Sharing</a>
 			</div>
 			<div id="top-panel" class="col-xs-12 col-sm-10">
 				<div class="row">
@@ -74,7 +77,7 @@ if (!isset($_SESSION["api_key"])) {
 						<a href="#" class="about">about</a>
 						<ul class="nav navbar-nav pull-right panel-menu">
 							<li class="hidden-xs">
-								<a href="index.html" class="modal-link">
+								<a href="" class="modal-link">
 									<i class="fa fa-bell"></i>
 									<span class="badge">7</span>
 								</a>
@@ -178,12 +181,8 @@ if (!isset($_SESSION["api_key"])) {
 		<div id="content" class="col-xs-12 col-sm-10">
 			<div id="about">
 				<div class="about-inner">
-					<h4 class="page-header">Open-source admin theme for you</h4>
-					<p>DevOOPS team</p>
-					<p>Homepage - <a href="http://devoops.me" target="_blank">http://devoops.me</a></p>
-					<p>Email - <a href="mailto:devoopsme@gmail.com">devoopsme@gmail.com</a></p>
-					<p>Twitter - <a href="http://twitter.com/devoopsme" target="_blank">http://twitter.com/devoopsme</a></p>
-					<p>Donate - BTC 123Ci1ZFK5V7gyLsyVU36yPNWSB5TDqKn3</p>
+					<h4 class="page-header">RideSharing - System management</h4>
+					<p>RideSharing team</p>
 				</div>
 			</div>
 			<div class="preloader">

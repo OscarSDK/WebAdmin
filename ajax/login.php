@@ -1,5 +1,15 @@
 <?php
 session_start();
+if (!isset($_SESSION["lang"])) {
+	$_SESSION["lang"] = "en";
+}
+if (isset($_SESSION["lang"])) {
+	if ($_SESSION["lang"] == "vi") {
+		require_once '../include/lang_vi.php';
+	} else {
+		require_once '../include/lang_en.php';
+	}
+}
 if (isset($_SESSION["api_key"])) {
 	header('Location: ../index.php');
 	die();
@@ -9,7 +19,7 @@ if (isset($_SESSION["api_key"])) {
 <html lang="vi">
 	<head>
 		<meta charset="utf-8">
-		<title>RideSharing - Đăng nhập hệ thống</title>
+		<title>RideSharing - <?php echo $lang['LOGINPAGE_TITLE'] ?></title>
 		<meta name="description" content="description">
 		<meta name="author" content="Evgeniya">
 		<meta name="keyword" content="keywords">
@@ -28,6 +38,13 @@ if (isset($_SESSION["api_key"])) {
 <body>
 <div class="container-fluid">
 	<div id="page-login" class="row">
+		<div class="col-xs-12 col-xs-offset-10">
+			<!-- HeadSectionDl BEGIN -->
+			<div id="languages">
+			<a href="../index.php?lang=en"><img src="../img/en.png" /></a>
+			<a href="../index.php?lang=vi"><img src="../img/vi.png" /></a>
+			</div>
+		</div>
 		<div class="col-xs-12 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 			<div class="box">
 				<div class="box-content">
@@ -36,7 +53,7 @@ if (isset($_SESSION["api_key"])) {
 							<h3 class="page-header">Đăng nhập hệ thống - RideSharing</h3>
 						</div>
 						<div class="form-group">
-							<label class="control-label">Email</label>
+							<label class="control-label">Email <?php echo $_SESSION["lang"] ?></label>
 							<input type="email" class="form-control" name="email" />
 						</div>
 						<div class="form-group">
