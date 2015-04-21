@@ -18,7 +18,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-xs-12 col-sm-6">
+	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
@@ -43,7 +43,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-xs-12 col-sm-6">
+</div>
+<div class="row">
+	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
@@ -118,7 +120,7 @@ function xGraph1(){
 			"data": [
 				{
 				  "x": "2015-11-04",
-				  "y": 8
+				  "y": 10
 				},
 				{
 				  "x": "2015-11-06",
@@ -164,7 +166,7 @@ function xGraph1(){
 			}
 		]
 	};
-	var i = 1;
+
 	var opts = {
 		"dataFormatX": function (x) { return d3.time.format('%Y-%m-%d').parse(x); },
 		"tickFormatX": function (x) { return d3.time.format('%B')(x); },
@@ -192,23 +194,23 @@ function xGraph2(){
 		"className": ".xchart-class-2",
 		"data": [
 			{
-			  "x": "Apple",
+			  "x": 11,
 			  "y": 575
 			},
 			{
-			  "x": "Facebook",
+			  "x": 12,
 			  "y": 163
 			},
 			{
-			  "x": "Microsoft",
+			  "x": 13,
 			  "y": 303
 			},
 			{
-			  "x": "Cisco",
+			  "x": 14,
 			  "y": 121
 			},
 			{
-			  "x": "Google",
+			  "x": 15,
 			  "y": 393
 			}
 		]
@@ -216,6 +218,68 @@ function xGraph2(){
 		]
 	};
 	var myChart = new xChart('bar', data, '#xchart-2');
+}
+//
+// Graph3 created in element with id = xchart-3
+//
+function xGraph3(){
+	var data = {
+		"xScale": "time",
+		"yScale": "linear",
+		"type": "line",
+		"main": [
+		{
+			"className": ".xchart-class-3",
+			"data": [
+				{
+				  "x": "2012-11-05",
+				  "y": 1
+				},
+				{
+				  "x": "2012-11-06",
+				  "y": 6
+				},
+				{
+				  "x": "2012-11-07",
+				  "y": 13
+				},
+				{
+				  "x": "2012-11-08",
+				  "y": -3
+				},
+				{
+				  "x": "2012-11-09",
+				  "y": -4
+				},
+				{
+				  "x": "2012-11-10",
+				  "y": 9
+				},
+				{
+				  "x": "2012-11-11",
+				  "y": 6
+				},
+				{
+				  "x": "2012-11-12",
+				  "y": 7
+				},
+				{
+				  "x": "2012-11-13",
+				  "y": -2
+				},
+				{
+				  "x": "2012-11-14",
+				  "y": -7
+				}
+			]
+			}
+		]
+	};
+	var opts = {
+		"dataFormatX": function (x) { return d3.time.format('%Y-%m-%d').parse(x); },
+		"tickFormatX": function (x) { return d3.time.format('%A')(x); }
+	};
+	var myChart = new xChart('line', data, '#xchart-3', opts);
 }
 // Draw all test xCharts
 function DrawAllxCharts(){

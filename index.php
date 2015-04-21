@@ -3,7 +3,19 @@ session_start();
 if (isset($_GET["lang"])) {
 	$_SESSION["lang"] = $_GET["lang"];
 }
-if (!isset($_SESSION["api_key"])) {
+
+if (!isset($_SESSION["lang"])) {
+	$_SESSION["lang"] = "en";
+}
+if (isset($_SESSION["lang"])) {
+	if ($_SESSION["lang"] == "vi") {
+		require_once 'include/lang_vi.php';
+	} else {
+		require_once 'include/lang_en.php';
+	}
+}
+
+if (!isset($_SESSION["staff_api_key"])) {
 	header('Location: ajax/login.php');
 	die();
 }
@@ -13,7 +25,7 @@ if (!isset($_SESSION["api_key"])) {
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>RideSharing - Quản trị hệ thống</title>
+		<title>RideSharing - <?php echo $lang['MAINPAGE_TITLE'] ?></title>
 		<meta name="description" content="description">
 		<meta name="author" content="DevOOPS">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,22 +89,10 @@ if (!isset($_SESSION["api_key"])) {
 						<a href="#" class="about">about</a>
 						<ul class="nav navbar-nav pull-right panel-menu">
 							<li class="hidden-xs">
-								<a href="" class="modal-link">
-									<i class="fa fa-bell"></i>
-									<span class="badge">7</span>
-								</a>
+								<a href="index.php?lang=en"><img src="img/en.png" /></a>
 							</li>
 							<li class="hidden-xs">
-								<a class="ajax-link" href="ajax/calendar.html">
-									<i class="fa fa-calendar"></i>
-									<span class="badge">7</span>
-								</a>
-							</li>
-							<li class="hidden-xs">
-								<a href="ajax/page_messages.html" class="ajax-link">
-									<i class="fa fa-envelope"></i>
-									<span class="badge">7</span>
-								</a>
+								<a href="index.php?lang=vi"><img src="img/vi.png" /></a>
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
@@ -137,6 +137,12 @@ if (!isset($_SESSION["api_key"])) {
 					<a href="ajax/dashboard.php" class="ajax-link">
 						<i class="fa fa-dashboard"></i>
 						<span class="hidden-xs">Trang chủ</span>
+					</a>
+				</li>
+				<li class="dropdown">
+					<a href="ajax/staff_list.php" class="ajax-link">
+						<i class="fa fa-bar-chart-o"></i>
+						<span class="hidden-xs">Quản lí nhân viên</span>
 					</a>
 				</li>
 				<li class="dropdown">

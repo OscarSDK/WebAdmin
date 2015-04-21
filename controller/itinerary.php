@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../include/Config.php';
-if (!isset($_SESSION["api_key"])) {
+if (!isset($_SESSION["staff_api_key"])) {
 	header('Location: ../ajax/login.php');
 	die();
 }
@@ -11,7 +11,7 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 	$itinerary_id = !isset($_GET['act'])?$_POST['itinerary_id']:$_GET['itinerary_id'];
 
 	if ($act == 'view') {
-		$api_key = $_SESSION["api_key"];
+		$api_key = $_SESSION["staff_api_key"];
 
 		$ch = curl_init();
 

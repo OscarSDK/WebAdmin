@@ -3,7 +3,7 @@ session_start();
 
 require_once '../include/Config.php';
 
-if (isset($_SESSION["api_key"])) {
+if (isset($_SESSION["staff_api_key"])) {
 	header('Location: ../index.php');
 	die();
 }
@@ -30,7 +30,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 	$json = json_decode($result);
 
 	if (!$json->{'error'}) {
-		$_SESSION['api_key'] = $json->{'apiKey'};
+		$_SESSION["staff_api_key"] = $json->{'apiKey'};
 		
 		header('Location: ../index.php');
 		die();

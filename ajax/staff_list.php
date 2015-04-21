@@ -31,9 +31,7 @@ require_once '../include/Config.php';
 							<th>STT</th>
 							<th>Họ tên</th>
 							<th>Email</th>
-							<th>Điện thoại</th>
 							<th>CMND</th>
-							<th>Cấp độ</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -44,7 +42,7 @@ require_once '../include/Config.php';
 						$api_key = $_SESSION["staff_api_key"];
 						$ch = curl_init();
 
-						curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/user");
+						curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs");
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 						curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
@@ -55,7 +53,7 @@ require_once '../include/Config.php';
 						curl_close($ch);
 
 						$json = json_decode($result);
-						$res = $json->{'users'};
+						$res = $json->{'staffs'};
 						$i = 1;
 						foreach ($res as $value) {
 						?>
@@ -65,28 +63,10 @@ require_once '../include/Config.php';
 								<?php echo $value->{'fullname'}==NULL?' ':$value->{'fullname'} ?>
 							</td>
 							<td><?php echo $value->{'email'}==NULL?' ':$value->{'email'} ?></td>
-							<td><?php echo $value->{'phone'}==NULL?' ':$value->{'phone'} ?></td>
 							<td><?php echo $value->{'personalID'}==NULL?' ':$value->{'personalID'} ?></td>
-							<td><?php 
-									$percent = round($value->{'status'}/4*100);
-									if ($percent <= 33) {
-										$color = 'progress-bar-danger';
-									} else if ($percent <= 66) {
-										$color = 'progress-bar-warning';
-									} else {
-										$color = 'progress-bar-success';
-									}
-								?>		
-								<div class="progress">
-									<div class="progress-bar <?php echo $color ?>" role="progressbar" aria-valuenow="<?php echo $percent ?>" 
-											aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent ?>%;">
-										<span><?php echo $percent ?>%</span>
-									</div>
-								</div>
-							</td>
-							<td><a href="controller/user.php?user_id=<?php echo $value->{'user_id'} ?>&act=view" 
+							<td><a href="controller/staff.php?staff_id=<?php echo $value->{'staff_id'} ?>&act=view" 
 									class="btn btn-warning btn-app-sm btn-circle"><i class="fa fa-edit"></i></a>
-								<a href="controller/user.php?user_id=<?php echo $value->{'user_id'} ?>&act=delete" 
+								<a href="controller/staff.php?staff_id=<?php echo $value->{'staff_id'} ?>&act=delete" 
 									class="btn btn-danger btn-app-sm btn-circle"><i class="fa fa-trash-o"></i></a> 
 							</td>
 						</tr>

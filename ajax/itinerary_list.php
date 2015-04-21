@@ -42,7 +42,7 @@ require_once '../include/Config.php';
 						<!-- Start: list_row -->
 						<?php
 						require_once '/Config.php';
-						$api_key = $_SESSION["api_key"];
+						$api_key = $_SESSION["staff_api_key"];
 						$ch = curl_init();
 
 						curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/itineraries");

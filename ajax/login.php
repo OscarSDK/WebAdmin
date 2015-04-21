@@ -10,7 +10,8 @@ if (isset($_SESSION["lang"])) {
 		require_once '../include/lang_en.php';
 	}
 }
-if (isset($_SESSION["api_key"])) {
+
+if (isset($_SESSION["staff_api_key"])) {
 	header('Location: ../index.php');
 	die();
 }
@@ -53,7 +54,7 @@ if (isset($_SESSION["api_key"])) {
 							<h3 class="page-header">Đăng nhập hệ thống - RideSharing</h3>
 						</div>
 						<div class="form-group">
-							<label class="control-label">Email <?php echo $_SESSION["lang"] ?></label>
+							<label class="control-label">Email</label>
 							<input type="email" class="form-control" name="email" />
 						</div>
 						<div class="form-group">

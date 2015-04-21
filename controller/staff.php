@@ -6,16 +6,16 @@ if (!isset($_SESSION["staff_api_key"])) {
 	die();
 }
 
-if ((isset($_GET['act']) && isset($_GET['user_id'])) || (isset($_POST['act']) && isset($_POST['user_id']))) {
+if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) && isset($_POST['staff_id']))) {
 	$act = !isset($_GET['act'])?$_POST['act']:$_GET['act'];
-	$user_id = !isset($_GET['act'])?$_POST['user_id']:$_GET['user_id'];
+	$staff_id = !isset($_GET['staff_id'])?$_POST['staff_id']:$_GET['staff_id'];
 
 	if ($act == 'view') {
 		$api_key = $_SESSION["staff_api_key"];
 
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/user/".$user_id);
+		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
@@ -24,35 +24,28 @@ if ((isset($_GET['act']) && isset($_GET['user_id'])) || (isset($_POST['act']) &&
 
 		// close curl resource to free up system resources
 		curl_close($ch);
-		$user = json_decode($result, true);
-		$user['user_id'] = $user_id;
+		$staff = json_decode($result, true);
+		$staff['staff_id'] = $staff_id;
 
-		if(isset($user)) {
-			$_SESSION['user'] = $user;
+		if(isset($staff)) {
+			$_SESSION['staff'] = $staff;
 		}
 		
-		header('Location: ../index.php#ajax/user_edit.php');
+		header('Location: ../index.php#ajax/staff_edit.php');
 		die();
 	} else if ($act == 'edit') {
-		$locked = isset($_POST['locked'])?1:0;
-		$status = $_POST['status'];
-		
-		if (isset($_POST['identify'])) {
-			$status = 4;
-		} else {
-			if ($status == 4) {
-				$status = 3;
-			}
-		}
-
+		$fullname = $_POST['fullname'];
+		$personalID = $_POST['personalID'];
+		$email = $_POST['email'];
 		$data = array(
-			'locked' => $locked,
-			'status' => $status
-			);
+			'fullname' => $fullname,
+			'email' => $email,
+			'personalID' => $personalID;
+		);
 
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/user/".$user_id);
+		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
@@ -78,7 +71,7 @@ if ((isset($_GET['act']) && isset($_GET['user_id'])) || (isset($_POST['act']) &&
 		//Initial curl
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/user/".$user_id);
+		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
 		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
