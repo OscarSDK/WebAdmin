@@ -17,7 +17,6 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 
 		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/itinerary/".$itinerary_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		//curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
 		// execute the request
 		$result = curl_exec($ch);
@@ -53,7 +52,7 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/itinerary/".$itinerary_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
+		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['staff_api_key']));
 		curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($data));
 
 		// execute the request
@@ -92,7 +91,7 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 
 		$json = json_decode($result);
 
-		echo $_SESSION['api_key'];
+		echo $_SESSION['staff_api_key'];
 		print_r($itinerary_id);
 		//echo $ch;
 		print_r($json);

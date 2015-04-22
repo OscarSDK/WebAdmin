@@ -56,9 +56,9 @@ require_once '../include/Config.php';
 						curl_close($ch);
 
 						$json = json_decode($result);
-						//echo "Jsom: ";
-						//echo $json;
+						
 						$res = $json->{'itineraries'};
+
 						$i = 1;
 						foreach ($res as $value) {
 						?>

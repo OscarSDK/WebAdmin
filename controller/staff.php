@@ -40,7 +40,7 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 		$data = array(
 			'fullname' => $fullname,
 			'email' => $email,
-			'personalID' => $personalID;
+			'personalID' => $personalID
 		);
 
 		$ch = curl_init();
@@ -48,8 +48,8 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
-		curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($data));
+		curl_setopt($ch,CURLOPT_HTTPHEADER, array('Authorization: '.$_SESSION['staff_api_key']));
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 
 		// execute the request
 		$result = curl_exec($ch);
@@ -65,7 +65,7 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 			$_SESSION['message'] = $json->{'message'};
 		}
 
-		header('Location: ../index.php#ajax/user_list.php');
+		header('Location: ../index.php#ajax/staff_list.php');
 		die();
 	} else if ($act == 'delete') {
 		//Initial curl
@@ -74,7 +74,7 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
-		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['api_key']));
+		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['staff_api_key']));
 
 		// execute the request
 		$result = curl_exec($ch);
@@ -90,14 +90,14 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 			$_SESSION['message'] = $json->{'message'};
 		}
 
-		header('Location: ../index.php#ajax/user_list.php');
+		header('Location: ../index.php#ajax/staff_list.php');
 		die();
 	} else {
-		header('Location: ../index.php#ajax/user_list.php');
+		header('Location: ../index.php#ajax/staff_list.php');
 		die();
 	}
 } else {
-	header('Location: ../index.php#ajax/user_list.php');
+	header('Location: ../index.php#ajax/staff_list.php');
 	die();
 }
 ?>
