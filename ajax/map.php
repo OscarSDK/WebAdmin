@@ -8,18 +8,19 @@
 	</div>
 </div>
 <script type="text/javascript">
+listMarker = [];
 // Create a function that the hub can call to broadcast messages.
 chat.client.getPos = function (uid, pos) {
 	var latlng = pos.split(',');
 
-	if(listMarker.indexOf(uid) == -1) {
-	    var marker = L.marker([latlng[0], latlng[1]], {icon: myIcon}).addTo(map);
+	if(listMarker[uid] == undefined) {
+	    marker = L.marker([latlng[0], latlng[1]], {icon: myIcon}).addTo(map);
 	    listMarker[uid] = marker;
-	}
-	else {
+	} else {
 	    listMarker[uid].setLatLng([latlng[0], latlng[1]]);
-	    marker.update();
+	    listMarker[uid].update();
 	}
+
 };
 $.connection.hub.start().done(function () {
 	chat.server.connect("0");
@@ -57,7 +58,10 @@ function FullScreenLeafletMap(){
 	    iconUrl: 'http://iconizer.net/files/Google_Maps_Icons/orig/motorbike.png',
 	});
 
-	listMarker = [];
+	map.on('click', function(e) {
+	    listMarker[14].setLatLng([16.435077, 107.631705 ]);
+	    listMarker[14].update();
+	});
 }
 
 $(document).ready(function() {
