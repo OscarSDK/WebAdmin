@@ -1,7 +1,7 @@
 <?php
-session_start();
-
 require_once '../include/Config.php';
+
+session_start();
 
 if (isset($_SESSION["staff_api_key"])) {
 	header('Location: ../index.php');
@@ -31,6 +31,13 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
 	if (!$json->{'error'}) {
 		$_SESSION["staff_api_key"] = $json->{'apiKey'};
+
+		$staff = array(
+			'fullname' => $json->{'fullname'},
+			'email' => $json->{'email'},
+			);
+
+		$_SESSION["StaffProfile"] = $staff;
 		
 		header('Location: ../index.php');
 		die();

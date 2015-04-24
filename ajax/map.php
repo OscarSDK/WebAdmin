@@ -54,6 +54,8 @@ function FullScreenLeafletMap(){
 		maxZoom: 18
 	}).addTo(map);
 
+	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar'}).addTo(map);
+
 	myIcon = L.icon({
 	    iconUrl: 'http://iconizer.net/files/Google_Maps_Icons/orig/motorbike.png',
 	});

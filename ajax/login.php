@@ -1,23 +1,27 @@
 <?php
 session_start();
-if (!isset($_SESSION["lang"])) {
-	$_SESSION["lang"] = "en";
-}
-if (isset($_SESSION["lang"])) {
-	if ($_SESSION["lang"] == "vi") {
+
+// Set language for website
+if(isset($_COOKIE['lang'])) {
+	if ($_COOKIE['lang'] == "vi") {
 		require_once '../include/lang_vi.php';
 	} else {
 		require_once '../include/lang_en.php';
 	}
+} else {
+    setcookie('lang', 'en', time() + (86400 * 365), "/");
 }
 
+//Check if user not login
 if (isset($_SESSION["staff_api_key"])) {
 	header('Location: ../index.php');
 	die();
 }
+
 ?>
+
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 	<head>
 		<meta charset="utf-8">
 		<title>RideSharing - <?php echo $lang['LOGINPAGE_TITLE'] ?></title>
@@ -73,15 +77,15 @@ if (isset($_SESSION["staff_api_key"])) {
 <script src="../plugins/jquery/jquery.min.js"></script>
 <script src="../plugins/toast/javascript/jquery.toastmessage.js"></script>
 <script type="text/javascript">
-	$(document).ready(function () {
-	    <?php 
-			if (isset($_SESSION["message"])) {
-		?>
-	    $().toastmessage('showErrorToast', '<?php echo $_SESSION["message"] ?>')
-	    <?php
-	    		$_SESSION["message"] = null;
-			}
-		?>
+$(document).ready(function () {
+    <?php 
+		if (isset($_SESSION["message"])) {
+	?>
+    $().toastmessage('showErrorToast', '<?php echo $_SESSION["message"] ?>')
+    <?php
+    		$_SESSION["message"] = null;
+		}
+	?>
 })
 </script>
 </body>

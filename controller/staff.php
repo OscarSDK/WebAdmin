@@ -96,6 +96,10 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 		header('Location: ../index.php#ajax/staff_list.php');
 		die();
 	}
+} else if (isset($_GET['act']) && $_GET['act'] == 'viewprofile') {
+
+	header('Location: ../index.php#ajax/staff_edit.php');
+	die();
 } else {
 	header('Location: ../index.php#ajax/staff_list.php');
 	die();

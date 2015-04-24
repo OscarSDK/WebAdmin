@@ -1,3 +1,6 @@
+<style type="text/css">
+img.img-responsive { display: table-cell; width: 25%; }
+</style>
 <!--Start Breadcrumb-->
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12">
@@ -20,34 +23,11 @@
 <!--End Breadcrumb-->
 <!--Start Dashboard 1-->
 <div id="dashboard-header" class="row">
-	<div class="col-xs-12 col-sm-4 col-md-5">
-		<h3>Hello, Dashboard!</h3>
+	<div class="col-xs-2">
+		<img class="img-responsive" src="img/statis.png">
 	</div>
-	<div class="clearfix visible-xs"></div>
-	<div class="col-xs-12 col-sm-8 col-md-7 pull-right">
-		<div class="row">
-			<div class="col-xs-4">
-				<div class="sparkline-dashboard" id="sparkline-1"></div>
-				<div class="sparkline-dashboard-info">
-					<i class="fa fa-usd"></i>756.45M
-					<span class="txt-primary">EBITDA</span>
-				</div>
-			</div>
-			<div class="col-xs-4">
-				<div class="sparkline-dashboard" id="sparkline-2"></div>
-				<div class="sparkline-dashboard-info">
-					<i class="fa fa-usd"></i>245.12M
-					<span class="txt-info">OIBDA</span>
-				</div>
-			</div>
-			<div class="col-xs-4">
-				<div class="sparkline-dashboard" id="sparkline-3"></div>
-				<div class="sparkline-dashboard-info">
-					<i class="fa fa-usd"></i>107.83M
-					<span>REVENUE</span>
-				</div>
-			</div>
-		</div>
+	<div class="col-xs-10 col-sm-4 col-md-5">
+		<h1>Thống kê hệ thống</h1>
 	</div>
 </div>
 <!--End Dashboard 1-->
@@ -55,9 +35,9 @@
 <div class="row-fluid">
 	<div id="dashboard_links" class="col-xs-12 col-sm-2 pull-right">
 		<ul class="nav nav-pills nav-stacked">
-			<li class="active"><a href="#" class="tab-link" id="overview">Overview</a></li>
-			<li><a href="#" class="tab-link" id="clients">Clients</a></li>
-			<li><a href="#" class="tab-link" id="graph">Statistics</a></li>
+			<li class="active"><a href="#" class="tab-link" id="overview">Tổng quan</a></li>
+			<li><a href="#" class="tab-link" id="clients">Nhân viên</a></li>
+			<li><a href="#" class="tab-link" id="graph">Người dùng</a></li>
 			<li><a href="#" class="tab-link" id="servers">Servers</a></li>
 			<li><a href="#" class="tab-link" id="planning">Planning</a></li>
 			<li><a href="#" class="tab-link" id="netmap">Network map</a></li>
@@ -508,10 +488,6 @@
 <!--End Dashboard 2 -->
 <div style="height: 40px;"></div>
 <script type="text/javascript">
-// Array for random data for Sparkline
-var sparkline_arr_1 = SparklineTestData();
-var sparkline_arr_2 = SparklineTestData();
-var sparkline_arr_3 = SparklineTestData();
 $(document).ready(function() {
 	// Make all JS-activity for dashboard
 	DashboardTabChecker();

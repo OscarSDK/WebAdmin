@@ -6,43 +6,6 @@
 	Dynamically load plugin scripts
 ---------------------------------------------*/
 //
-// Dynamically load Fullcalendar Plugin Script
-// homepage: http://arshaw.com/fullcalendar
-// require moment.js
-//
-function LoadCalendarScript(callback){
-	function LoadFullCalendarScript(){
-		if(!$.fn.fullCalendar){
-			$.getScript('plugins/fullcalendar/fullcalendar.js', callback);
-		}
-		else {
-			if (callback && typeof(callback) === "function") {
-				callback();
-			}
-		}
-	}
-	if (!$.fn.moment){
-		$.getScript('plugins/moment/moment.min.js', LoadFullCalendarScript);
-	}
-	else {
-		LoadFullCalendarScript();
-	}
-}
-//
-// Dynamically load  OpenStreetMap Plugin
-// homepage: http://openlayers.org
-//
-function LoadOpenLayersScript(callback){
-	if (!$.fn.OpenLayers){
-		$.getScript('http://www.openlayers.org/api/OpenLayers.js', callback);
-	}
-	else {
-		if (callback && typeof(callback) === "function") {
-			callback();
-		}
-	}
-}
-//
 //  Dynamically load  jQuery Timepicker plugin
 //  homepage: http://trentrichardson.com/examples/timepicker/
 //
@@ -2357,16 +2320,6 @@ function SmallChangeVal(val) {
 	return [result];
 }
 //
-// Make array of random data
-//
-function SparklineTestData(){
-	var arr = [];
-	for (var i=1; i<9; i++){
-		arr.push([Math.floor(1000*Math.random())])
-	}
-	return arr;
-}
-//
 // Redraw Knob charts on Dashboard (panel- servers)
 //
 function RedrawKnob(elem){
@@ -2543,46 +2496,6 @@ function DrawKnobDashboard(){
 		srv_monitoring_selectors.forEach(RedrawKnob);
 	}, 3000);
 }
-//
-// Draw Springy graphs (Network map) on Dashboard page
-//
-function SpringyNetmap(){
-	var graph = new Springy.Graph();
-	var core1 = graph.newNode({label: 'Network core 1 (Cisco 3750G-48PS)'});
-	var core2 = graph.newNode({label: 'Network core 2 (Cisco 3750G-48PS)'});
-	var srv1 = graph.newNode({label: 'Server switch 1 (Cisco 3750G-48TS)'});
-	var srv2 = graph.newNode({label: 'Server switch 2 (Cisco 3750G-48TS)'});
-	var pabx1 = graph.newNode({label: 'PABX switch 1 (Cisco 3750G-48TS)'});
-	var pabx2 = graph.newNode({label: 'PABX switch 2 (Cisco 3750G-48TS)'});
-	var router1 = graph.newNode({label: 'Router 1 (Cisco 3945E)'});
-	var router2 = graph.newNode({label: 'Router 2 (Cisco 3945E)'});
-	graph.newEdge(core1, core2, {color: '#00A0B0'});
-	graph.newEdge(core2, core1, {color: '#6A4A3C'});
-	graph.newEdge(core1, srv1, {color: '#CC333F'});
-	graph.newEdge(core2, srv1, {color: '#CC333F'});
-	graph.newEdge(core1, srv2, {color: '#EB6841'});
-	graph.newEdge(core2, srv2, {color: '#EB6841'});
-	graph.newEdge(srv1, srv2, {color: '#EDC951'});
-	graph.newEdge(srv2, srv1, {color: '#EDC951'});
-	graph.newEdge(pabx1, core1, {color: '#7DBE3C'});
-	graph.newEdge(pabx1, core2, {color: '#7DBE3C'});
-	graph.newEdge(pabx2, core1, {color: '#000000'});
-	graph.newEdge(pabx2, core2, {color: '#000000'});
-	graph.newEdge(router1, core1, {color: '#00A0B0'});
-	graph.newEdge(router1, core2, {color: '#00A0B0'});
-	graph.newEdge(router2, core1, {color: '#6A4A3C'});
-	graph.newEdge(router2, core2, {color: '#6A4A3C'});
-	graph.newEdge(pabx1, pabx2, {color: '#CC333F'});
-	graph.newEdge(pabx2, pabx1, {color: '#CC333F'});
-	graph.newEdge(router1, router2, {color: '#EB6841'});
-	graph.newEdge(router2, router1, {color: '#EB6841'});
-	$('#springy-demo').springy({
-		graph: graph,
-		nodeSelected: function(node){
-			console.log('Node selected: ' + JSON.stringify(node.data));
-		}
-	});
-}
 /*-------------------------------------------
 	Function for File upload page (form_file_uploader.html)
 ---------------------------------------------*/
@@ -2605,88 +2518,6 @@ function FileUpload(){
 		validation: {
 			allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
 		}
-	});
-}
-/*-------------------------------------------
-	Function for OpenStreetMap page (maps.html)
----------------------------------------------*/
-//
-// Load GeoIP JSON data and draw 3 maps
-//
-function LoadTestMap(){
-	$.getJSON("http://www.telize.com/geoip?callback=?",
-		function(json) {
-			var osmap = new OpenLayers.Layer.OSM("OpenStreetMap");//создание слоя карты
-			var googlestreets = new OpenLayers.Layer.Google("Google Streets", {numZoomLevels: 22,visibility: false});
-			var googlesattelite = new OpenLayers.Layer.Google( "Google Sattelite", {type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22});
-			var map1_layers = [googlestreets,osmap, googlesattelite];
-			// Create map in element with ID - map-1
-			var map1 = drawMap(json.longitude, json.latitude, "map-1", map1_layers);
-			$("#map-1").resize(function(){ setTimeout(map1.updateSize(), 500); });
-			// Create map in element with ID - map-2
-			var osmap1 = new OpenLayers.Layer.OSM("OpenStreetMap");//создание слоя карты
-			var map2_layers = [osmap1];
-			var map2 = drawMap(json.longitude, json.latitude, "map-2", map2_layers);
-			$("#map-2").resize(function(){ setTimeout(map2.updateSize(), 500); });
-			// Create map in element with ID - map-3
-			var sattelite = new OpenLayers.Layer.Google( "Google Sattelite", {type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22});
-			var map3_layers = [sattelite];
-			var map3 = drawMap(json.longitude, json.latitude, "map-3", map3_layers);
-			$("#map-3").resize(function(){ setTimeout(map3.updateSize(), 500); });
-		}
-	);
-}
-/*-------------------------------------------
-	Function for Fullscreen Map page (map_fullscreen.html)
----------------------------------------------*/
-//
-// Create Fullscreen Map
-//
-function FullScreenMap(){
-	$.getJSON("http://www.telize.com/geoip?callback=?",
-		function(json) {
-			var osmap = new OpenLayers.Layer.OSM("OpenStreetMap");//создание слоя карты
-			var googlestreets = new OpenLayers.Layer.Google("Google Streets", {numZoomLevels: 22,visibility: false});
-			var googlesattelite = new OpenLayers.Layer.Google( "Google Sattelite", {type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22});
-			var map1_layers = [googlestreets,osmap, googlesattelite];
-			var map_fs = drawMap(json.longitude, json.latitude, "full-map", map1_layers);
-		}
-	);
-}
-/*-------------------------------------------
-	Function for get stock from Yahoo finance to dashboard page
----------------------------------------------*/
-//
-// Make stock dashboard page
-//
-function CreateStockPage(){
-	var yqlURL="http://query.yahooapis.com/v1/public/yql?q=";
-	var dataFormat="&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-	$(function() { //Load jQueryUI DatePicker by class name
-		$( ".datePick" ).datepicker({dateFormat: 'yy-mm-dd'} );
-	});
-	$("#submit").click(function() {
-		var symbol = $("#txtSymbol").val();
-		var startDate=$("#startDate").val();
-		var endDate=$("#endDate").val();
-		var realtimeQ = yqlURL+"select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + symbol + "%22)%0A%09%09&"+ dataFormat;
-		var historicalQ = yqlURL+"select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22"+ symbol +"%22%20and%20startDate%20%3D%20%22"+ startDate +"%22%20and%20endDate%20%3D%20%22"+ endDate +"%22"+ dataFormat;
-		$(function() {
-			$.getJSON(realtimeQ, function(json) {//YQL Request
-				$('#symbol').text(json.query.results.quote.Name);//Assign quote.Param to span tag
-				$('#bidRealtime').text(json.query.results.quote.BidRealtime);
-			});
-		}); 
-		$(function() {
-			$.getJSON(historicalQ, function(json) {
-				$.each(json.query.results.quote, function(i, quote) {//loop results.quote object
-					$("#date").append('<span>' + quote.Date + '</span');//create span for each record
-				});
-				$.each(json.query.results.quote, function(i, quote) { //new each statement is needed
-					$("#closeValue").append('<span>' + quote.Close + '</span');
-				});
-			});
-		});
 	});
 }
 /*-------------------------------------------
@@ -3128,6 +2959,7 @@ function DrawCalendar(){
 function DrawFullCalendar(){
 	LoadCalendarScript(DrawCalendar);
 }
+
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 //
@@ -3235,12 +3067,6 @@ $(document).ready(function () {
 			var content = $(this).closest('div.box');
 			content.remove();
 		});
-	$('#locked-screen').on('click', function (e) {
-		e.preventDefault();
-		$('body').addClass('body-screensaver');
-		$('#screensaver').addClass("show");
-		ScreenSaver();
-	});
 	$('body').on('click', 'a.close-link', function(e){
 		e.preventDefault();
 		CloseModalBox();
@@ -3269,10 +3095,10 @@ $(document).ready(function () {
 		}
 	});
 	$('#screen_unlock').on('mouseover', function(){
-		var header = 'Enter current username and password';
-		var form = $('<div class="form-group"><label class="control-label">Username</label><input type="text" class="form-control" name="username" /></div>'+
-					'<div class="form-group"><label class="control-label">Password</label><input type="password" class="form-control" name="password" /></div>');
-		var button = $('<div class="text-center"><a href="index.html" class="btn btn-primary">Unlock</a></div>');
+		var header = 'Nhập email và mật khẩu';
+		var form = $('<div class="form-group"><label class="control-label">Email</label><input type="text" class="form-control" name="email" /></div>'+
+					'<div class="form-group"><label class="control-label">Mật khẩu</label><input type="password" class="form-control" name="password" /></div>');
+		var button = $('<div class="text-center"><button type="submit" class="btn btn-primary">Đăng nhập</button></div>');
 		OpenModalBox(header, form, button);
 	});
 	$('.about').on('click', function(){
