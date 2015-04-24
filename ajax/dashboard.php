@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <style type="text/css">
 img.img-responsive { display: table-cell; width: 25%; }
 </style>
@@ -40,8 +43,6 @@ img.img-responsive { display: table-cell; width: 25%; }
 			<li><a href="#" class="tab-link" id="graph">Người dùng</a></li>
 			<li><a href="#" class="tab-link" id="servers">Servers</a></li>
 			<li><a href="#" class="tab-link" id="planning">Planning</a></li>
-			<li><a href="#" class="tab-link" id="netmap">Network map</a></li>
-			<li><a href="#" class="tab-link" id="stock">Yahoo finance</a></li>
 		</ul>
 	</div>
 	<div id="dashboard_tabs" class="col-xs-12 col-sm-10">
@@ -184,77 +185,18 @@ img.img-responsive { display: table-cell; width: 25%; }
 		</div>
 		<!--End Dashboard Tab 1-->
 		<!--Start Dashboard Tab 2-->
-		<div id="dashboard-clients" class="row" style="visibility: hidden; position: absolute;">
-			<div class="row one-list-message">
-				<div class="col-xs-1"><i class="fa fa-users"></i></div>
-				<div class="col-xs-2"><b>Country</b></div>
-				<div class="col-xs-2">Visitors</div>
-				<div class="col-xs-2">Page hits</div>
-				<div class="col-xs-2">Revenue</div>
-				<div class="col-xs-1">Activity</div>
-				<div class="col-xs-2">Date</div>
-			</div>
-			<div class="row one-list-message">
-				<div class="col-xs-1"><i class="fa fa-user"></i></div>
-				<div class="col-xs-2"><b>USA</b></div>
-				<div class="col-xs-2">109455</div>
-				<div class="col-xs-2">54322344</div>
-				<div class="col-xs-2"><i class="fa fa-usd"></i> 354563</div>
-				<div class="col-xs-1"><span class="bar"></span></div>
-				<div class="col-xs-2 message-date">12/31/13</div>
-			</div>
-			<div class="row one-list-message">
-				<div class="col-xs-1"><i class="fa fa-user"></i></div>
-				<div class="col-xs-2"><b>U.K.</b></div>
-				<div class="col-xs-2">86549</div>
-				<div class="col-xs-2">43242344</div>
-				<div class="col-xs-2"><i class="fa fa-usd"></i> 265563</div>
-				<div class="col-xs-1"><span class="bar"></span></div>
-				<div class="col-xs-2 message-date">12/25/13</div>
-			</div>
-			<div class="row one-list-message">
-				<div class="col-xs-1"><i class="fa fa-user"></i></div>
-				<div class="col-xs-2"><b>FRANCE</b></div>
-				<div class="col-xs-2">79399</div>
-				<div class="col-xs-2">45376844</div>
-				<div class="col-xs-2"><i class="fa fa-usd"></i> 309456</div>
-				<div class="col-xs-1"><span class="bar"></span></div>
-				<div class="col-xs-2 message-date">12/30/13</div>
-			</div>
-			<div class="row one-list-message">
-				<div class="col-xs-1"><i class="fa fa-user"></i></div>
-				<div class="col-xs-2"><b>GERMANY</b></div>
-				<div class="col-xs-2">94567</div>
-				<div class="col-xs-2">35322344</div>
-				<div class="col-xs-2"><i class="fa fa-usd"></i> 301040</div>
-				<div class="col-xs-1"><span class="bar"></span></div>
-				<div class="col-xs-2 message-date">12/26/13</div>
-			</div>
-			<div class="row one-list-message">
-				<div class="col-xs-1"><i class="fa fa-user"></i></div>
-				<div class="col-xs-2"><b>CANADA</b></div>
-				<div class="col-xs-2">89525</div>
-				<div class="col-xs-2">1342344</div>
-				<div class="col-xs-2"><i class="fa fa-usd"></i> 298764</div>
-				<div class="col-xs-1"><span class="bar"></span></div>
-				<div class="col-xs-2 message-date">12/30/13</div>
-			</div>
-			<div class="row one-list-message">
-				<div class="col-xs-1"><i class="fa fa-user"></i></div>
-				<div class="col-xs-2"><b>CHINA</b></div>
-				<div class="col-xs-2">120865</div>
-				<div class="col-xs-2">43522344</div>
-				<div class="col-xs-2"><i class="fa fa-usd"></i> 776563</div>
-				<div class="col-xs-1"><span class="bar"></span></div>
-				<div class="col-xs-2 message-date">12/29/13</div>
+		<div id="dashboard-clients" class="row" style="width:100%; visibility: hidden; position: absolute;">
+			<div class="col-xs-12">
+				<h4 class="page-header">Thống kê nhân viên</h4>
+				<div id="stat-staff" style="height: 300px;"></div>
 			</div>
 		</div>
 		<!--End Dashboard Tab 2-->
 		<!--Start Dashboard Tab 3-->
 		<div id="dashboard-graph" class="row" style="width:100%; visibility: hidden; position: absolute;" >
 			<div class="col-xs-12">
-				<h4 class="page-header">OS Platform Statistics</h4>
-				<div id="stat-graph" style="height: 300px;"></div>
+				<h4 class="page-header">Thống kê người dùng</h4>
+				<div id="stat-user" style="height: 300px;"></div>
 			</div>
 		</div>
 		<!--End Dashboard Tab 3-->
@@ -452,42 +394,48 @@ img.img-responsive { display: table-cell; width: 25%; }
 				</div>
 		</div>
 		<!--End Dashboard Tab 5-->
-		<!--Start Dashboard Tab 6-->
-		<div id="dashboard-netmap" class="row" style="visibility: hidden; position: absolute;">
-			<div class="col-xs-12">
-				<h4 class="page-header">Network map(mesh topology)</h4>
-				<canvas id="springy-demo" width="900" height="480" />
-			</div>
-		</div>
-		<!--End Dashboard Tab 6-->
-		<!--Start Dashboard Tab 7-->
-		<div id="dashboard-stock" class="row" style="visibility: hidden; position: absolute;">
-			<div class="col-xs-12">
-				<h4 class="page-header">Stocks from Yahoo Finance</h4>
-				<div id="inputSymbol">
-					<p>Enter Stock</p>
-					<input id="txtSymbol" class="required" Placeholder="Symbol" />
-					<input id="startDate" class="datePick required" type="text"  Placeholder="From" />
-					<input id="endDate" class="datePick" type="text" Placeholder="To"  />
-					<button id="submit">Submit</button>
-				</div>
-				<div class="realtime" style="margin-top:40px;">
-					<div class="col-xs-6"><p>Name</p><span id="symbol"></span></div>
-					<div class="col-xs-6"><p>RealtimeBid</p><span id="bidRealtime"></span></div>
-				</div>
-				<div class="historical">
-					<div class="col-xs-6"><p>Date</p><div id="date"></div></div>
-					<div class="col-xs-6"><p>Price</p><div id="closeValue"></div></div>
-				</div>
-			</div>
-		</div>
-		<!--End Dashboard Tab 7-->
 	</div>
 	<div class="clearfix"></div>
 </div>
 <!--End Dashboard 2 -->
 <div style="height: 40px;"></div>
 <script type="text/javascript">
+//
+// Draw Morris charts on Dashboard (panel- Statistics - Planning + 3 donuts)
+//
+function MorrisDashboard(){
+	Morris.Line({
+		element: 'stat-staff',
+		data: [
+			<?php
+			$res = $_SESSION['stats'];
+			foreach ($res as $value) {
+			?>
+			{"period": "<?php echo $value->{'month'} ?>", "Staff": <?php echo $value->{'number'} ?>},
+			<?php
+			}
+			?>
+		],
+		xkey: 'period',
+		ykeys: ['Staff'],
+		labels: ['Staff']
+	});
+
+	Morris.Line({
+		element: 'stat-user',
+		data: [
+			{"period": "2014-01", "Staff": 13.4},
+			{"period": "2014-02", "Staff": 13.4},
+			{"period": "2014-03", "Staff": 13.4},
+			{"period": "2014-04", "Staff": 13.4},
+			{"period": "2014-05", "Staff": 13.4},
+			{"period": "2014-06", "Staff": 13.4},
+		],
+		xkey: 'period',
+		ykeys: ['Staff'],
+		labels: ['Staff']
+	});
+}
 $(document).ready(function() {
 	// Make all JS-activity for dashboard
 	DashboardTabChecker();
@@ -497,8 +445,6 @@ $(document).ready(function() {
 	LoadSparkLineScript(DrawSparklineDashboard);
 	// Load Morris plugin and run callback for draw Morris charts for dashboard
 	LoadMorrisScripts(MorrisDashboard);
-	// Load Springy plugin and run callback for draw network map for dashboard
-	LoadSpringyScripts(SpringyNetmap);
 	// Make beauty hover in table
 	$("#ticker-table").beautyHover();
 	// Run script for stock block

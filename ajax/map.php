@@ -7,7 +7,7 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
+<script>
 listMarker = [];
 // Create a function that the hub can call to broadcast messages.
 chat.client.getPos = function (uid, pos) {
@@ -25,7 +25,7 @@ chat.client.getPos = function (uid, pos) {
 $.connection.hub.start().done(function () {
 	chat.server.connect("0");
 });
-//
+
 // Dynamically load  Leaflet Plugin
 // homepage: http://leafletjs.com
 //
@@ -47,32 +47,23 @@ function LoadLeafletScript(callback){
 // Create Leaflet Fullscreen Map
 //
 function FullScreenLeafletMap(){
-	var i = 0.000005;
-	map = L.map('full-map').setView([16.435077, 107.631705 ], 13);
-	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	map = L.map('full-map').setView([16.435077, 107.631705], 13);
+		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		maxZoom: 18
 	}).addTo(map);
 
-	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar'}).addTo(map);
-
 	myIcon = L.icon({
-	    iconUrl: 'http://iconizer.net/files/Google_Maps_Icons/orig/motorbike.png',
-	});
-
-	map.on('click', function(e) {
-	    listMarker[14].setLatLng([16.435077, 107.631705 ]);
-	    listMarker[14].update();
+	 iconUrl: 'http://iconizer.net/files/Google_Maps_Icons/orig/motorbike.png',
 	});
 }
-
+// Add class for fullscreen view
+$('#content').addClass('full-content');
+// Set height of block
+SetMinBlockHeight($('.fullscreenmap'));
+// Run Leaflet
+LoadLeafletScript(FullScreenLeafletMap);
 $(document).ready(function() {
-
-	// Add class for fullscreen view
-	$('#content').addClass('full-content');
-	// Set height of block
-	SetMinBlockHeight($('.fullscreenmap'));
-	// Run Leaflet
-	LoadLeafletScript(FullScreenLeafletMap);
+	
 });
 </script>

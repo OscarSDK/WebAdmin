@@ -97,6 +97,7 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 		die();
 	}
 } else if (isset($_GET['act']) && $_GET['act'] == 'viewprofile') {
+	$_SESSION['staff'] = $_SESSION['StaffProfile'];
 
 	header('Location: ../index.php#ajax/staff_edit.php');
 	die();

@@ -31,10 +31,13 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
 	if (!$json->{'error'}) {
 		$_SESSION["staff_api_key"] = $json->{'apiKey'};
-
 		$staff = array(
 			'fullname' => $json->{'fullname'},
 			'email' => $json->{'email'},
+			'personalID' => $json->{'personalID'},
+			'link_avatar' => $json->{'link_avatar'},
+			'created_at' => $json->{'created_at'},
+			'staff_id' => $json->{'staff_id'},
 			);
 
 		$_SESSION["StaffProfile"] = $staff;
