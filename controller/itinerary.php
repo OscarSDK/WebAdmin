@@ -74,8 +74,6 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 		header('Location: ../index.php#ajax/itinerary_list.php');
 		die();
 	} else if ($act == 'delete') {
-		echo $itinerary_id;
-		echo "quay len";
 		//Initial curl
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/itinerary/".$itinerary_id);
