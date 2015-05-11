@@ -40,11 +40,11 @@
 				<form method='POST' action='controller/itinerary.php' class="form-horizontal" role="form">
 					<div class="form-group">
 
-						<div class="col-sm-8">
+						<<div class="col-sm-8">
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Tài Xế:</label>
 								<div class="col-sm-6">
-								<input disabled type="text" class="form-control" placeholder="Tài xế" value="<?php echo $itinerary['driver_id'] ?>"
+								<input disabled type="text" class="form-control" placeholder="Tài xế" value="<?php echo $itinerary['fullname'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Tài Xế" name="driver_id">
 								</div>
 							</div>

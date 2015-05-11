@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 //Set language for website
 if (isset($_GET["lang"])) {
 	setcookie('lang', $_GET["lang"], time() + (86400 * 365), "/");
@@ -151,12 +150,18 @@ if (!isset($_SESSION["staff_api_key"])) {
 						<span class="hidden-xs">Trang chủ</span>
 					</a>
 				</li>
+				<?php
+				if ($_SESSION["StaffProfile"]["role"] == 2) {
+				?>
 				<li class="dropdown">
 					<a href="ajax/staff_list.php" class="ajax-link">
 						<i class="fa fa-bar-chart-o"></i>
 						<span class="hidden-xs">Quản lí nhân viên</span>
 					</a>
 				</li>
+				<?php
+				}
+				?>
 				<li class="dropdown">
 					<a href="ajax/user_list.php" class="ajax-link">
 						<i class="fa fa-bar-chart-o"></i>
@@ -181,6 +186,18 @@ if (!isset($_SESSION["staff_api_key"])) {
 						<span class="hidden-xs">Theo dõi hành trình</span>
 					</a>
 				</li>
+				<?php
+				if ($_SESSION["StaffProfile"]["role"] == 2) {
+				?>
+				<li class="dropdown">
+					<a href="controller/statistic.php?view=user" class="ajax-link">
+						<i class="fa fa-bar-chart-o"></i>
+						<span class="hidden-xs">Thống kê</span>
+					</a>
+				</li>
+				<?php
+				}
+				?>
 				<li>
 					<a id="locked-screen" class="submenu" href="#">
 						<i class="fa fa-power-off"></i>

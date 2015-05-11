@@ -38,6 +38,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 			'link_avatar' => $json->{'link_avatar'},
 			'created_at' => $json->{'created_at'},
 			'staff_id' => $json->{'staff_id'},
+			'role' => $json->{'role'}
 			);
 
 		$_SESSION["StaffProfile"] = $staff;

@@ -21,12 +21,13 @@ if (isset($_GET['view'])) {
 	// close curl resource to free up system resources
 	curl_close($ch);
 	$stats = json_decode($result)->{'stats'};
+	print_r($stats);
 
 	if(isset($stats)) {
 		$_SESSION['stats'] = $stats;
 	}
 
-	header('Location: ../index.php#ajax/dashboard.php');
+	header('Location: ../index.php#ajax/statistic.php');
 	die();
 } else {
 	header('Location: ../index.php');
