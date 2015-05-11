@@ -12,8 +12,6 @@
 	} else {
 		$itinerary = $_SESSION["itinerary"];
 	}
-
-	print_r($itinerary) ;
 ?>
 
 <div class="row">
@@ -41,58 +39,55 @@
 			<div class="box-content">
 				<form method='POST' action='controller/itinerary.php' class="form-horizontal" role="form">
 					<div class="form-group">
-						<img class="img-rounded col-sm-4" src="data:image/jpeg;base64,<?php echo $itinerary['link_avatar'] ?>" alt="">
+
 						<div class="col-sm-8">
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Tài Xế:</label>
 								<div class="col-sm-6">
-								<input disabled type="text" class="form-control" placeholder="Full name" value="<?php echo $itinerary['fullname'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Tài Xế" name="fullname">
+								<input disabled type="text" class="form-control" placeholder="Tài xế" value="<?php echo $itinerary['driver_id'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Tài Xế" name="driver_id">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">hành Khách:</label>
+								<label class="col-sm-4 control-label" style="text-align:left">Hành Khách:</label>
 								<div class="col-sm-6">
-								<input disabled type="text" class="form-control" placeholder="Full name" value="<?php echo $itinerary['fullname'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Họ và tên" name="fullname">
+								<input disabled type="text" class="form-control" placeholder="Hành Khách" value="<?php echo $itinerary['customer_id'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Họ và tên" name="customer_id">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Điểm Đi:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Last name" value="<?php echo 
-										$itinerary['start_address'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Số điện thoại" name="phone">
+									<input disabled type="text" class="form-control" placeholder="Điểm Đi" value="<?php echo $itinerary['start_address'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Điểm Đi" name="phone">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Tọa Độ Đi:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Last name" value="<?php echo 
-										$itinerary['start_address'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Số điện thoại" name="phone">
+									<input disabled type="text" class="form-control" placeholder="Tọa Độ Đi" value="<?php echo $itinerary['start_address'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Tọa Độ Đi" name="phone">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Điểm Đến:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Email" value="<?php echo $itinerary['end_address'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Địa chỉ email" name="email">
+									<input disabled type="text" class="form-control" placeholder="Điểm Đến" value="<?php echo $itinerary['end_address'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Điểm Đến" name="email">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Tọa Độ Đến:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Last name" value="<?php echo 
-										$itinerary['start_address'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Số điện thoại" name="phone">
+									<input disabled type="text" class="form-control" placeholder="Tọa Độ Đến" value="<?php echo $itinerary['start_address'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Tọa Độ Đến" name="phone">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Thời Gian:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Chứng minh nhân dân" value="<?php echo $itinerary['leave_time'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Chứng minh nhân dân" name="personalID">
+									<input disabled type="text" class="form-control" placeholder="Thời Gian" value="<?php echo $itinerary['leave_time'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Thời Gian:" name="personalID">
 								</div>
 								<div class="col-sm-1">
 									<a target="_blank" href="ajax/personal_id.php#<?php echo $itinerary['personalID_img'] ?>" onclick="return popup('ajax/personal_id.php#<?php echo $itinerary['personalID_img'] ?>')" type="button" 
@@ -101,51 +96,13 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Ngày tạo tài khoản:</label>
+								<label class="col-sm-4 control-label" style="text-align:left">Ngày tạo:</label>
 								<div class="col-sm-6">
 									<input type="text" class="form-control" value="<?php echo $itinerary['created_at'] ?>"
 									disabled data-toggle="tooltip" data-placement="bottom" title="Ngày tạo tài khoản">
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Đã xác minh:</label>
-								<div class="col-sm-6">
-									<div class="toggle-switch toggle-switch-success">
-										<label>
-											<input <?php echo $itinerary['status']==4?'checked':'' ?> type="checkbox" name="identify">
-											<div class="toggle-switch-inner"></div>
-											<div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Cấp độ:</label>
-								<div class="col-sm-6">
-									<input type='hidden' name='status' value='<?php echo $itinerary['status'] ?>'/>
-									<?php
-										$percent = round($itinerary['status']/4*100);
-									?>
-									<div class="progress">
-										<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $percent ?>" 
-											aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent ?>%;">
-											<span><?php echo $percent ?>%</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Khóa tài khoản:</label>
-								<div class="col-sm-6">
-									<div class="toggle-switch toggle-switch-success">
-										<label>
-											<input <?php echo $itinerary['locked']==true?'checked':'' ?> type="checkbox" name="locked">
-											<div class="toggle-switch-inner"></div>
-											<div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
-										</label>
-									</div>
-								</div>
-							</div>
+							
 							<input type='hidden' name='user_id' value='<?php echo $itinerary['user_id'] ?>'/>
 							<input type='hidden' name='act' value='edit'/>
 						</div>
