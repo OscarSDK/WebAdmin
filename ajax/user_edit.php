@@ -20,9 +20,9 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="index.html">Trang chủ</a></li>
-			<li><a href="#">Người dùng</a></li>
-			<li><a href="#">Sửa thông tin</a></li>
+			<li><a href="#">Dashboard</a></li>
+			<li><a href="#">Manage User</a></li>
+			<li><a href="#">User Detail</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>

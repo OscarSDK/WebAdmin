@@ -20,9 +20,9 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="index.html">Trang chủ</a></li>
-			<li><a href="#">Hành Trình</a></li>
-			<li><a href="#">Sửa thông tin</a></li>
+			<li><a href="#">Dashboard</a></li>
+			<li><a href="#">Manage Itinerary</a></li>
+			<li><a href="#">Itinerary Detail</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>

@@ -92,6 +92,35 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 
 		header('Location: ../index.php#ajax/staff_list.php');
 		die();
+	} else if ($act == 'create') {
+		if (isset($_POST['fullname'])) {
+			//Initial curl
+			$ch = curl_init();
+
+			curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+			curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['staff_api_key']));
+
+			// execute the request
+			$result = curl_exec($ch);
+
+			// close curl resource to free up system resources
+			curl_close($ch);
+
+			$json = json_decode($result);
+
+			if (!$json->{'error'}) {
+				$_SESSION['message'] = $json->{'message'};
+			} else {
+				$_SESSION['message'] = $json->{'message'};
+			}
+		} else {
+			$_SESSION["staff"] = null;
+		}
+
+		//header('Location: ../index.php#ajax/staff_edit.php');
+		die();
 	} else {
 		header('Location: ../index.php#ajax/staff_list.php');
 		die();
@@ -100,6 +129,45 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 	$_SESSION['staff'] = $_SESSION['StaffProfile'];
 
 	header('Location: ../index.php#ajax/staff_edit.php');
+	die();
+} else if ((isset($_GET['act']) && $_GET['act'] == 'create')) {
+	$_SESSION['staff'] = null;
+
+	header('Location: ../index.php#ajax/staff_edit.php');
+	die();
+} else if ((isset($_POST['act']) && $_POST['act'] == 'create')) {
+	$fullname = $_POST['fullname'];
+	$personalID = $_POST['personalID'];
+	$email = $_POST['email'];
+	$data = array(
+		'fullname' => $fullname,
+		'email' => $email,
+		'personalID' => $personalID
+	);
+
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff");
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch,CURLOPT_HTTPHEADER, array('Authorization: '.$_SESSION['staff_api_key']));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+
+	// execute the request
+	$result = curl_exec($ch);
+
+	// close curl resource to free up system resources
+	curl_close($ch);
+
+	$json = json_decode($result);
+
+	if (!$json->{'error'}) {
+		$_SESSION['message'] = $json->{'message'};
+	} else {
+		$_SESSION['message'] = $json->{'message'};
+	}
+
+	header('Location: ../index.php#ajax/staff_list.php');
 	die();
 } else {
 	header('Location: ../index.php#ajax/staff_list.php');

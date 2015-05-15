@@ -9,8 +9,7 @@ require_once '../include/Config.php';
 		</a>
 		<ol class="breadcrumb pull-left">
 			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Tables</a></li>
-			<li><a href="#">Data Tables</a></li>
+			<li><a href="#">Manage Driver</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>

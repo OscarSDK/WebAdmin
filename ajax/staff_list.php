@@ -9,8 +9,7 @@ require_once '../include/Config.php';
 		</a>
 		<ol class="breadcrumb pull-left">
 			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Tables</a></li>
-			<li><a href="#">Data Tables</a></li>
+			<li><a href="#">Manage Staff</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
@@ -78,6 +77,9 @@ require_once '../include/Config.php';
 				</table>
 			</div>
 		</div>
+		<a href="controller/staff.php?act=create" class="btn btn-primary btn-label-left">
+			<span><i class="fa fa-clock-o"></i></span>Tạo người dùng mới
+		</a>
 	</div>
 </div>
 <script type="text/javascript">

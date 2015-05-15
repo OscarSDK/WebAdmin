@@ -6,12 +6,9 @@
 		die();
 	}
 
-	if (!isset($_SESSION["staff"])) {
-		header('Location: ../index.php#ajax/staff_list.php');
-		die();
-	} else {
+	if (isset($_SESSION["staff"])) {
 		$staff = $_SESSION["staff"];
-	}
+	} 
 ?>
 
 <div class="row">
@@ -20,9 +17,9 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="index.html">Trang chủ</a></li>
-			<li><a href="#">Người dùng</a></li>
-			<li><a href="#">Sửa thông tin</a></li>
+			<li><a href="#">Dashboard</a></li>
+			<li><a href="#">Manage Staff</a></li>
+			<li><a href="#">Staff Detail</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
@@ -39,29 +36,34 @@
 			<div class="box-content">
 				<form method='POST' action='controller/staff.php' class="form-horizontal" role="form">
 					<div class="form-group">
-						<a href=""><img class="img-rounded col-sm-4" src="data:image/jpeg;base64,<?php echo $staff['link_avatar'] ?>" alt=""></a>
+						<input type="file" name="fileToUpload" id="fileToUpload">
+						<a href=""><img id="avatar" class="img-rounded col-sm-4" src="data:image/jpeg;base64,<?php echo isset($staff['link_avatar'])?$staff['link_avatar']:'' ?>" alt=""></a>
+
 						<div class="col-sm-8">
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Họ tên:</label>
 								<div class="col-sm-6">
-								<input type="text" class="form-control" placeholder="Full name" value="<?php echo $staff['fullname'] ?>"
+								<input type="text" class="form-control" placeholder="Full name" value="<?php echo isset($staff['fullname'])?$staff['fullname']:'' ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Họ và tên" name="fullname">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Email:</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" placeholder="Email" value="<?php echo $staff['email'] ?>"
+									<input type="text" class="form-control" placeholder="Email" value="<?php echo isset($staff['email'])?$staff['email']:'' ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Địa chỉ email" name="email">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Chứng minh nhân dân:</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" placeholder="Chứng minh nhân dân" value="<?php echo $staff['personalID'] ?>"
+									<input type="text" class="form-control" placeholder="Chứng minh nhân dân" value="<?php echo isset($staff['personalID'])?$staff['personalID']:'' ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Chứng minh nhân dân" name="personalID">
 								</div>
 							</div>
+							<?php
+							if (isset($staff['created_at'])) {
+							?>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Ngày tạo tài khoản:</label>
 								<div class="col-sm-6">
@@ -69,8 +71,17 @@
 									disabled data-toggle="tooltip" data-placement="bottom" title="Ngày tạo tài khoản">
 								</div>
 							</div>
+							<?php } ?>
+							<?php
+							if (isset($staff['staff_id'])) {
+							?>
 							<input type='hidden' name='staff_id' value='<?php echo $staff['staff_id'] ?>'/>
 							<input type='hidden' name='act' value='edit'/>
+							<?php 
+							} else { 
+							?>
+							<input type='hidden' name='act' value='create'/>
+							<?php } ?>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -83,9 +94,19 @@
 						</div>
 						<div class="col-sm-2">
 							<button type="submit" class="btn btn-primary btn-label-left">
+							<?php
+							if (isset($staff['staff_id'])) {
+							?>
 							<span><i class="fa fa-clock-o"></i></span>
 								Cập nhật
 							</button>
+							<?php 
+							} else { 
+							?>
+							<span><i class="fa fa-clock-o"></i></span>
+								Tạo mới
+							</button>
+							<?php } ?>
 						</div>
 					</div>
 				</form>
@@ -107,6 +128,31 @@ function popup(url) {
 	newwindow=window.open(url,'name','height=300,width=500');
 	if (window.focus) {newwindow.focus()}
 	return false;
+}
+function readURL(input,id) {
+
+    var url = input.value;
+    var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+    var file = input.files[0];
+
+    if(file.size > 358400){ 
+
+     showError("File size is not big than 350KB!");
+
+    }else {
+
+     if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $(id).attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }else {
+         alert("Please add the image!");
+        } 
+    }
 }
 $(document).ready(function() {
 	// Create Wysiwig editor for textare

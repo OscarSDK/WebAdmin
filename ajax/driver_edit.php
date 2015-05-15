@@ -20,9 +20,9 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="index.html">Trang chủ</a></li>
-			<li><a href="#">Tài xế</a></li>
-			<li><a href="#">Sửa thông tin</a></li>
+			<li><a href="#">Dashboard</a></li>
+			<li><a href="#">Manage Driver</a></li>
+			<li><a href="#">Driver Detail</a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
