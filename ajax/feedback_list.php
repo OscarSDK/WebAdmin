@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../include/Config.php';
+require_once '../include/Config.php';
 // Set language for website
 if(isset($_COOKIE['lang'])) {
 	if ($_COOKIE['lang'] == "vi") {
@@ -19,7 +20,7 @@ if(isset($_COOKIE['lang'])) {
 		</a>
 		<ol class="breadcrumb pull-left">
 			<li><a href="#"><?php echo $lang['DASHBOARD'] ?></a></li>
-			<li><a href="#"><?php echo $lang['STAFF_MANAGE'] ?></a></li>
+			<li><a href="#"><?php echo $lang['MANAGE_FEEDBACK'] ?></a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
@@ -40,7 +41,7 @@ if(isset($_COOKIE['lang'])) {
 							<th><?php echo $lang['ORDINAL'] ?></th>
 							<th><?php echo $lang['NAME'] ?></th>
 							<th><?php echo $lang['EMAIL'] ?></th>
-							<th><?php echo $lang['PERSONAL_ID'] ?></th>
+							<th><?php echo $lang['CONTENT'] ?></th>
 							<th></th>
 						</tr>
 					</thead>
@@ -51,7 +52,7 @@ if(isset($_COOKIE['lang'])) {
 						$api_key = $_SESSION["staff_api_key"];
 						$ch = curl_init();
 
-						curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs");
+						curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/feedback");
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 						curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
@@ -62,21 +63,19 @@ if(isset($_COOKIE['lang'])) {
 						curl_close($ch);
 
 						$json = json_decode($result);
-						$res = $json->{'staffs'};
+						$res = $json->{'feedbacks'};
 						$i = 1;
 						foreach ($res as $value) {
 						?>
 						<tr>
 							<td><?php echo $i++ ?></td>
-							<td><img class="img-rounded" src="data:image/jpeg;base64,<?php echo $value->{'link_avatar'}==NULL?' ':$value->{'link_avatar'} ?>" alt="">
-								<?php echo $value->{'fullname'}==NULL?' ':$value->{'fullname'} ?>
-							</td>
+							<td><?php echo $value->{'name'}==NULL?' ':$value->{'name'} ?></td>
 							<td><?php echo $value->{'email'}==NULL?' ':$value->{'email'} ?></td>
-							<td><?php echo $value->{'personalID'}==NULL?' ':$value->{'personalID'} ?></td>
-							<td><a href="controller/staff.php?staff_id=<?php echo $value->{'staff_id'} ?>&act=view" 
-									class="btn btn-warning btn-app-sm btn-circle"><i class="fa fa-edit"></i></a>
-								<a href="controller/staff.php?staff_id=<?php echo $value->{'staff_id'} ?>&act=delete" 
-									class="btn btn-danger btn-app-sm btn-circle"><i class="fa fa-trash-o"></i></a> 
+							<td><?php echo $value->{'email'}==NULL?' ':$value->{'content'} ?></td>
+							<td>
+								<a href="controller/feedback.php?feedback_id=<?php echo $value->{'feedback_id'} ?>
+								&act=delete" 
+								class="btn btn-danger btn-app-sm btn-circle"><i class="fa fa-trash-o"></i></a> 
 							</td>
 						</tr>
 						<?php
@@ -87,9 +86,6 @@ if(isset($_COOKIE['lang'])) {
 				</table>
 			</div>
 		</div>
-		<a href="controller/staff.php?act=create" class="btn btn-primary btn-label-left">
-			<span><i class="fa fa-clock-o"></i></span><?php echo $lang['CREATE_NEW_USER'] ?>
-		</a>
 	</div>
 </div>
 <script type="text/javascript">

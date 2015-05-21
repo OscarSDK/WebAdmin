@@ -6,6 +6,18 @@
 		die();
 	}
 
+	require_once '../include/Config.php';
+	// Set language for website
+	if(isset($_COOKIE['lang'])) {
+		if ($_COOKIE['lang'] == "vi") {
+			require_once '../include/lang_vi.php';
+		} else {
+			require_once '../include/lang_en.php';
+		}
+	} else {
+	    setcookie('lang', 'en', time() + (86400 * 365), "/");
+	}
+
 	if (isset($_SESSION["staff"])) {
 		$staff = $_SESSION["staff"];
 	} 
@@ -17,9 +29,9 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Manage Staff</a></li>
-			<li><a href="#">Staff Detail</a></li>
+			<li><a href="#"><?php echo $lang['DASHBOARD'] ?></a></li>
+			<li><a href="#"><?php echo $lang['STAFF_MANAGE'] ?></a></li>
+			<li><a href="#"><?php echo $lang['STAFF_DETAILS'] ?></a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
@@ -41,21 +53,21 @@
 
 						<div class="col-sm-8">
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Họ tên:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['NAME'] ?></label>
 								<div class="col-sm-6">
 								<input type="text" class="form-control" placeholder="Full name" value="<?php echo isset($staff['fullname'])?$staff['fullname']:'' ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Họ và tên" name="fullname">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Email:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['EMAIL'] ?></label>
 								<div class="col-sm-6">
 									<input type="text" class="form-control" placeholder="Email" value="<?php echo isset($staff['email'])?$staff['email']:'' ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Địa chỉ email" name="email">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Chứng minh nhân dân:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['PERSONAL_ID'] ?></label>
 								<div class="col-sm-6">
 									<input type="text" class="form-control" placeholder="Chứng minh nhân dân" value="<?php echo isset($staff['personalID'])?$staff['personalID']:'' ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Chứng minh nhân dân" name="personalID">
@@ -65,7 +77,7 @@
 							if (isset($staff['created_at'])) {
 							?>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Ngày tạo tài khoản:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['CREATE_DAY'] ?></label>
 								<div class="col-sm-6">
 									<input type="text" class="form-control" value="<?php echo $staff['created_at'] ?>"
 									disabled data-toggle="tooltip" data-placement="bottom" title="Ngày tạo tài khoản">
@@ -89,7 +101,7 @@
 						<div class="col-sm-offset-4 col-sm-2">
 							<a href="index.php" type="cancel" class="btn btn-default btn-label-left">
 							<span><i class="fa fa-clock-o txt-danger"></i></span>
-								Quay lại
+								<?php echo $lang['BACK'] ?>
 							</a>
 						</div>
 						<div class="col-sm-2">
@@ -98,13 +110,13 @@
 							if (isset($staff['staff_id'])) {
 							?>
 							<span><i class="fa fa-clock-o"></i></span>
-								Cập nhật
+								<?php echo $lang['UPDATE'] ?>
 							</button>
 							<?php 
 							} else { 
 							?>
 							<span><i class="fa fa-clock-o"></i></span>
-								Tạo mới
+								<?php echo $lang['NEW'] ?>
 							</button>
 							<?php } ?>
 						</div>

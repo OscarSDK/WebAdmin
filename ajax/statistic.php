@@ -11,8 +11,8 @@ img.img-responsive { display: table-cell; width: 25%; }
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="index.html">Home</a></li>
-			<li><a href="#">Dashboard</a></li>
+			<li><a href="index.html"><?php echo $lang['HOME'] ?></a></li>
+			<li><a href="#"><?php echo $lang['DASHBOARD'] ?></a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
@@ -30,7 +30,7 @@ img.img-responsive { display: table-cell; width: 25%; }
 		<img class="img-responsive" src="img/statis.png">
 	</div>
 	<div class="col-xs-10 col-sm-4 col-md-5">
-		<h1>Thống kê hệ thống</h1>
+		<h1><?php echo $lang['STATISTC_SYS'] ?></h1>
 	</div>
 </div>
 <!--End Dashboard 1-->
@@ -38,11 +38,11 @@ img.img-responsive { display: table-cell; width: 25%; }
 <div class="row-fluid">
 	<div id="dashboard_links" class="col-xs-12 col-sm-2 pull-right">
 		<ul class="nav nav-pills nav-stacked">
-			<li class="active"><a href="#" class="tab-link" id="overview">Tổng quan</a></li>
-			<li><a href="#" class="tab-link" id="clients">Nhân viên</a></li>
-			<li><a href="#" class="tab-link" id="graph">Người dùng</a></li>
-			<li><a href="#" class="tab-link" id="servers">Servers</a></li>
-			<li><a href="#" class="tab-link" id="planning">Planning</a></li>
+			<li class="active"><a href="#" class="tab-link" id="overview"><?php echo $lang['OVERVIEW'] ?></a></li>
+			<li><a href="#" class="tab-link" id="clients"><?php echo $lang['STAFF'] ?></a></li>
+			<li><a href="#" class="tab-link" id="graph"><?php echo $lang['USER'] ?></a></li>
+			<li><a href="#" class="tab-link" id="servers"><?php echo $lang['SERVER'] ?></a></li>
+			<li><a href="#" class="tab-link" id="planning"><?php echo $lang['PLANNING'] ?></a></li>
 		</ul>
 	</div>
 	<div id="dashboard_tabs" class="col-xs-12 col-sm-10">
@@ -56,14 +56,14 @@ img.img-responsive { display: table-cell; width: 25%; }
 					<a href="#"><i class="fa fa-bookmark-o"></i></a>
 					<a href="#"><i class="fa fa-globe"></i></a>
 				</div>
-				<h4 class="page-header">MARKETPLACE</h4>
+				<h4 class="page-header"><?php echo $lang['MARKETPLACE'] ?></h4>
 				<table id="ticker-table" class="table m-table table-bordered table-hover table-heading">
 					<thead>
 						<tr>
-							<th>Ticker</th>
-							<th>Price</th>
-							<th>Change</th>
-							<th>Weekly Chart</th>
+							<th><?php echo $lang['TICKER'] ?></th>
+							<th><?php echo $lang['PRICE'] ?></th>
+							<th><?php echo $lang['CHANGE'] ?></th>
+							<th><?php echo $lang['WEEKLY_CHART'] ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -138,7 +138,7 @@ img.img-responsive { display: table-cell; width: 25%; }
 				</div>
 				<div id="ow-activity" class="row">
 					<div class="col-xs-2 col-sm-1 col-md-2">
-						<div class="v-txt">ACTIVITY</div>
+						<div class="v-txt"><?php echo $lang['ACTIVITY'] ?></div>
 					</div>
 					<div class="col-xs-7 col-sm-5 col-md-6">
 						<div class="row"><i class="fa fa-code"></i> Release published <span class="label label-default pull-right">01:17:34</span></div>
@@ -187,7 +187,7 @@ img.img-responsive { display: table-cell; width: 25%; }
 		<!--Start Dashboard Tab 2-->
 		<div id="dashboard-clients" class="row" style="width:100%; visibility: hidden; position: absolute;">
 			<div class="col-xs-12">
-				<h4 class="page-header">Thống kê nhân viên</h4>
+				<h4 class="page-header"><?php echo $lang['STATISTIC_STAFF'] ?></h4>
 				<div id="stat-staff" style="height: 300px;"></div>
 			</div>
 		</div>
@@ -195,7 +195,7 @@ img.img-responsive { display: table-cell; width: 25%; }
 		<!--Start Dashboard Tab 3-->
 		<div id="dashboard-graph" class="row" style="width:100%; visibility: hidden; position: absolute;" >
 			<div class="col-xs-12">
-				<h4 class="page-header">Thống kê người dùng</h4>
+				<h4 class="page-header"><?php echo $lang['STATISTIC_USER'] ?></h4>
 				<div id="stat-user" style="height: 300px;"></div>
 			</div>
 		</div>
@@ -204,7 +204,7 @@ img.img-responsive { display: table-cell; width: 25%; }
 		<div id="dashboard-servers" class="row" style="visibility: hidden; position: absolute;">
 			<div class="col-xs-12 col-sm-6 col-md-4 ow-server">
 				<h4 class="page-header text-right"><i class="fa fa-windows"></i>#SRV-APP</h4>
-				<small>Application server</small>
+				<small><?php echo $lang['APPLICATION_SERVER'] ?></small>
 				<div class="ow-settings">
 					<a href="#"><i class="fa fa-gears"></i></a>
 				</div>
@@ -330,7 +330,7 @@ img.img-responsive { display: table-cell; width: 25%; }
 		<!--Start Dashboard Tab 5-->
 		<div id="dashboard-planning" class="row" style="visibility: hidden; position: absolute;">
 				<div class="col-xs-12 col-sm-6">
-					<h4 class="page-header">Planned projects</h4>
+					<h4 class="page-header"><?php echo $lang['PLAN_PROJECT'] ?></h4>
 					<a href="#">Expense items</a><a href="#" class="pull-right">Project members</a>
 					<table class="table m-table table-bordered table-hover table-heading">
 						<thead>

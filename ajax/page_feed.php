@@ -4,9 +4,9 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="index.html">Dashboard</a></li>
-			<li><a href="#">Pages</a></li>
-			<li><a href="#">Feed Page</a></li>
+			<li><a href="index.html"><?php echo $lang['DASHBOARD'] ?></a></li>
+			<li><a href="#"><?php echo $lang['PAGES'] ?></a></li>
+			<li><a href="#"><?php echo $lang['FEEDPAGE'] ?></a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>

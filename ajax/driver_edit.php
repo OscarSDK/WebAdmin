@@ -1,6 +1,17 @@
 <?php
 	session_start();
 	require_once '../include/Config.php';
+	// Set language for website
+	if(isset($_COOKIE['lang'])) {
+		if ($_COOKIE['lang'] == "vi") {
+			require_once '../include/lang_vi.php';
+		} else {
+			require_once '../include/lang_en.php';
+		}
+	} else {
+	    setcookie('lang', 'en', time() + (86400 * 365), "/");
+	}
+
 	if (!isset($_SESSION["staff_api_key"])) {
 		header('Location: ../ajax/login.php');
 		die();
@@ -20,9 +31,9 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Manage Driver</a></li>
-			<li><a href="#">Driver Detail</a></li>
+			<li><a href="#"><?php echo $lang['DASHBOARD'] ?></a></li>
+			<li><a href="#"><?php echo $lang['MANAGE_DRIVER'] ?></a></li>
+			<li><a href="#"><?php $lang['DRIVER_DETAILS'] ?></a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
@@ -41,21 +52,21 @@
 					<div class="form-group">
 						<div class="col-sm-8">
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Họ tên:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['NAME'] ?></label>
 								<div class="col-sm-6">
 								<input disabled type="text" class="form-control" placeholder="Full name" value="<?php echo $user['fullname'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Họ và tên" name="fullname">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Giấy phép lái xe:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['DRIVER_LICENSE'] ?></label>
 								<div class="col-sm-6">
 									<input disabled type="text" class="form-control" placeholder="Last name" value="<?php echo $user['driver_license'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Giấy phép lái xe" name="driver_license">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Đã xác minh:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['VALIDATED'] ?></label>
 								<div class="col-sm-6">
 									<div class="toggle-switch toggle-switch-success">
 										<label>
@@ -68,7 +79,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Trạng thái:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['STATE'] ?></label>
 								<div class="col-sm-6">
 									<input type='hidden' name='status' value='<?php echo $user['status'] ?>'/>
 									<?php
@@ -91,13 +102,13 @@
 						<div class="col-sm-offset-4 col-sm-2">
 							<a href="index.php" type="cancel" class="btn btn-default btn-label-left">
 							<span><i class="fa fa-clock-o txt-danger"></i></span>
-								Quay lại
+								<?php echo $lang['BACK'] ?>
 							</a>
 						</div>
 						<div class="col-sm-2">
 							<button type="submit" class="btn btn-primary btn-label-left">
 							<span><i class="fa fa-clock-o"></i></span>
-								Cập nhật
+								<?php echo $lang['UPDATE'] ?>
 							</button>
 						</div>
 					</div>

@@ -6,6 +6,18 @@
 		die();
 	}
 
+	require_once '../include/Config.php';
+	// Set language for website
+	if(isset($_COOKIE['lang'])) {
+		if ($_COOKIE['lang'] == "vi") {
+			require_once '../include/lang_vi.php';
+		} else {
+			require_once '../include/lang_en.php';
+		}
+	} else {
+	    setcookie('lang', 'en', time() + (86400 * 365), "/");
+	}
+
 	if (!isset($_SESSION["itinerary"])) {
 		header('Location: ../index.php#ajax/itinerary_list.php');
 		die();
@@ -20,9 +32,9 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Manage Itinerary</a></li>
-			<li><a href="#">Itinerary Detail</a></li>
+			<li><a href="#"><?php echo $lang['DASHBOARD'] ?></a></li>
+			<li><a href="#"><?php echo $lang['MANAGE_ITINERARY'] ?></a></li>
+			<li><a href="#"><?php echo $lang['ITINERARY_DETAILS'] ?></a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
@@ -37,10 +49,10 @@
 	<div class="col-xs-12 col-sm-12">
 		<div class="box">
 			<div class="box-content">
-				<form method='POST' action='controller/itinerary.php' class="form-horizontal" role="form">
+				<form method="POST" action="controller/itinerary.php" class="form-horizontal" role="form">
 					<div class="form-group">
 
-						<<div class="col-sm-8">
+						<div class="col-sm-8">
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Tài Xế:</label>
 								<div class="col-sm-6">
@@ -112,13 +124,13 @@
 						<div class="col-sm-offset-4 col-sm-2">
 							<a href="" type="cancel" class="btn btn-default btn-label-left">
 							<span><i class="fa fa-clock-o txt-danger"></i></span>
-								Quay lại
+								<?php echo $lang['BACK'] ?>
 							</a>
 						</div>
 						<div class="col-sm-2">
 							<button type="submit" class="btn btn-primary btn-label-left">
 							<span><i class="fa fa-clock-o"></i></span>
-								Cập nhật
+								<?php echo $lang['UPDATE'] ?>
 							</button>
 						</div>
 					</div>

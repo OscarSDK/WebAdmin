@@ -1,5 +1,15 @@
 <?php
 session_start();
+// Set language for website
+if(isset($_COOKIE['lang'])) {
+	if ($_COOKIE['lang'] == "vi") {
+		require_once '../include/lang_vi.php';
+	} else {
+		require_once '../include/lang_en.php';
+	}
+} else {
+    setcookie('lang', 'en', time() + (86400 * 365), "/");
+}
 ?>
 <style type="text/css">
 img.img-responsive { display: table-cell; width: 25%; }
@@ -11,8 +21,8 @@ img.img-responsive { display: table-cell; width: 25%; }
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="index.html">Home</a></li>
-			<li><a href="#">Dashboard</a></li>
+			<li><a href="index.html"><?php echo $lang['HOME'] ?></a></li>
+			<li><a href="#"><?php echo $lang['DASHBOARD'] ?></a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
@@ -30,6 +40,6 @@ img.img-responsive { display: table-cell; width: 25%; }
 		<img class="img-responsive" src="img/statis.png">
 	</div>
 	<div class="col-xs-10 col-sm-4 col-md-5">
-		<h1>Ridesharing system</h1>
+		<h1><?php echo $lang['RS'] ?></h1>
 	</div>
 </div>

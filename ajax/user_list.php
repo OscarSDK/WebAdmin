@@ -1,6 +1,17 @@
 <?php
 session_start();
 require_once '../include/Config.php';
+require_once '../include/Config.php';
+// Set language for website
+if(isset($_COOKIE['lang'])) {
+	if ($_COOKIE['lang'] == "vi") {
+		require_once '../include/lang_vi.php';
+	} else {
+		require_once '../include/lang_en.php';
+	}
+} else {
+    setcookie('lang', 'en', time() + (86400 * 365), "/");
+}
 ?>
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12">
@@ -8,8 +19,8 @@ require_once '../include/Config.php';
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Manage User</a></li>
+			<li><a href="#"><?php echo $lang['DASHBOARD'] ?></a></li>
+			<li><a href="#"><?php echo $lang['USER_MANAGE'] ?></a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
@@ -27,12 +38,12 @@ require_once '../include/Config.php';
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>
-							<th>STT</th>
-							<th>Họ tên</th>
-							<th>Email</th>
-							<th>Điện thoại</th>
-							<th>CMND</th>
-							<th>Cấp độ</th>
+							<th><?php echo $lang['ORDINAL'] ?></th>
+							<th><?php echo $lang['NAME'] ?></th>
+							<th><?php echo $lang['EMAIL'] ?></th>
+							<th><?php echo $lang['PHONE'] ?></th>
+							<th><?php echo $lang['PERSONAL_ID'] ?></th>
+							<th><?php echo $lang['LEVEL'] ?></th>
 							<th></th>
 						</tr>
 					</thead>

@@ -27,7 +27,7 @@ if (!isset($_SESSION["staff_api_key"])) {
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>RideSharing - <?php echo $lang['MAINPAGE_TITLE'] ?></title>
+		<title><?php echo $lang['RS'] ?><?php echo $lang['MAINPAGE_TITLE'] ?></title>
 		<meta name="description" content="description">
 		<meta name="author" content="DevOOPS">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,7 +78,7 @@ if (!isset($_SESSION["staff_api_key"])) {
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
-				<a href="">Ride Sharing</a>
+				<a href=""><?php echo $lang['RIDESHARING'] ?></a>
 			</div>
 			<div id="top-panel" class="col-xs-12 col-sm-10">
 				<div class="row">
@@ -89,7 +89,7 @@ if (!isset($_SESSION["staff_api_key"])) {
 						</div>
 					</div>
 					<div class="col-xs-4 col-sm-8 top-panel-right">
-						<a href="#" class="about">about</a>
+						<a href="#" class="about"><?php echo $lang['ABOUT'] ?></a>
 						<ul class="nav navbar-nav pull-right panel-menu">
 							<li class="hidden-xs">
 								<a href="index.php?lang=en"><img src="img/en.png" /></a>
@@ -104,7 +104,7 @@ if (!isset($_SESSION["staff_api_key"])) {
 									</div>
 									<i class="fa fa-angle-down pull-right"></i>
 									<div class="user-mini pull-right">
-										<span class="welcome">Xin chào,</span>
+										<span class="welcome"><?php echo $lang['HELLO'] ?>,</span>
 										<span>
 										<?php 
 											if (isset($_SESSION["StaffProfile"]) && isset($_SESSION["StaffProfile"]["fullname"])) {
@@ -120,13 +120,13 @@ if (!isset($_SESSION["staff_api_key"])) {
 									<li>
 										<a href="controller/staff.php?act=viewprofile">
 											<i class="fa fa-user"></i>
-											<span>Thông tin cá nhân</span>
+											<span><?php echo $lang['PERSONAL_INFO'] ?></span>
 										</a>
 									</li>
 									<li>
 										<a href="controller/logout.php">
 											<i class="fa fa-power-off"></i>
-											<span>Đăng xuất</span>
+											<span><?php echo $lang['LOGOUT'] ?></span>
 										</a>
 									</li>
 								</ul>
@@ -147,7 +147,7 @@ if (!isset($_SESSION["staff_api_key"])) {
 				<li>
 					<a href="ajax/dashboard.php" class="ajax-link">
 						<i class="fa fa-dashboard"></i>
-						<span class="hidden-xs">Trang chủ</span>
+						<span class="hidden-xs"><?php echo $lang['HOME'] ?></span>
 					</a>
 				</li>
 				<?php
@@ -156,7 +156,7 @@ if (!isset($_SESSION["staff_api_key"])) {
 				<li class="dropdown">
 					<a href="ajax/staff_list.php" class="ajax-link">
 						<i class="fa fa-bar-chart-o"></i>
-						<span class="hidden-xs">Quản lí nhân viên</span>
+						<span class="hidden-xs"><?php echo $lang['STAFF_MANAGE'] ?></span>
 					</a>
 				</li>
 				<?php
@@ -165,25 +165,43 @@ if (!isset($_SESSION["staff_api_key"])) {
 				<li class="dropdown">
 					<a href="ajax/user_list.php" class="ajax-link">
 						<i class="fa fa-bar-chart-o"></i>
-						<span class="hidden-xs">Quản lí người dùng</span>
+						<span class="hidden-xs"><?php echo $lang['USER_MANAGE'] ?></span>
 					</a>
 				</li>
 				<li class="dropdown">
 					<a href="ajax/driver_list.php" class="ajax-link">
 						<i class="fa fa-bar-chart-o"></i>
-						<span class="hidden-xs">Quản lí lái xe</span>
+						<span class="hidden-xs"><?php echo $lang['MANAGE_DRIVER'] ?></span>
+					</a>
+				</li>
+				<li class="dropdown">
+					<a href="ajax/vehicle_list.php" class="ajax-link">
+						<i class="fa fa-bar-chart-o"></i>
+						<span class="hidden-xs"><?php echo $lang['MANAGE_VEHICLE'] ?></span>
 					</a>
 				</li>
 				<li class="dropdown">
 					<a href="ajax/itinerary_list.php" class="ajax-link">
 						<i class="fa fa-bar-chart-o"></i>
-						<span class="hidden-xs">Quản lí hành trình</span>
+						<span class="hidden-xs"><?php echo $lang['MANAGE_ITINERARY'] ?></span>
 					</a>
 				</li>
 				<li class="dropdown">
 					<a href="ajax/map.php" class="ajax-link">
 						<i class="fa fa-bar-chart-o"></i>
-						<span class="hidden-xs">Theo dõi hành trình</span>
+						<span class="hidden-xs"><?php echo $lang['ITINERARY_TRACKING'] ?></span>
+					</a>
+				</li>
+				<li class="dropdown">
+					<a href="ajax/comment_list.php" class="ajax-link">
+						<i class="fa fa-bar-chart-o"></i>
+						<span class="hidden-xs"><?php echo $lang['MANAGE_COMMENT'] ?></span>
+					</a>
+				</li>
+				<li class="dropdown">
+					<a href="ajax/feedback_list.php" class="ajax-link">
+						<i class="fa fa-bar-chart-o"></i>
+						<span class="hidden-xs"><?php echo $lang['MANAGE_FEEDBACK'] ?></span>
 					</a>
 				</li>
 				<?php
@@ -192,7 +210,7 @@ if (!isset($_SESSION["staff_api_key"])) {
 				<li class="dropdown">
 					<a href="controller/statistic.php?view=user" class="ajax-link">
 						<i class="fa fa-bar-chart-o"></i>
-						<span class="hidden-xs">Thống kê</span>
+						<span class="hidden-xs"><?php echo $lang['STATISTC_SYS'] ?></span>
 					</a>
 				</li>
 				<?php
@@ -201,13 +219,13 @@ if (!isset($_SESSION["staff_api_key"])) {
 				<li>
 					<a id="locked-screen" class="submenu" href="#">
 						<i class="fa fa-power-off"></i>
-						<span class="hidden-xs">Khóa màn hình</span>
+						<span class="hidden-xs"><?php echo $lang['LOCK_SCREEN'] ?></span>
 					</a>
 				</li>
 				<li>
 					<a href="controller/logout.php">
 						<i class="fa fa-power-off"></i>
-						<span class="hidden-xs">Đăng xuất</span>
+						<span class="hidden-xs"><?php echo $lang['LOGOUT'] ?></span>
 					</a>
 				</li>
 			</ul>
@@ -216,8 +234,8 @@ if (!isset($_SESSION["staff_api_key"])) {
 		<div id="content" class="col-xs-12 col-sm-10">
 			<div id="about">
 				<div class="about-inner">
-					<h4 class="page-header">RideSharing - System management</h4>
-					<p>RideSharing team</p>
+					<h4 class="page-header"><?php echo $lang['RS'] ?></h4>
+					<p><?php echo $lang['RS_TEAM'] ?></p>
 				</div>
 			</div>
 			<div class="preloader">

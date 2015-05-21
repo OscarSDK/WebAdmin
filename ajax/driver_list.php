@@ -1,6 +1,17 @@
 <?php
 session_start();
 require_once '../include/Config.php';
+require_once '../include/Config.php';
+// Set language for website
+if(isset($_COOKIE['lang'])) {
+	if ($_COOKIE['lang'] == "vi") {
+		require_once '../include/lang_vi.php';
+	} else {
+		require_once '../include/lang_en.php';
+	}
+} else {
+    setcookie('lang', 'en', time() + (86400 * 365), "/");
+}
 ?>
 <div class="row">
 	<div id="breadcrumb" class="col-xs-12">
@@ -8,8 +19,8 @@ require_once '../include/Config.php';
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Manage Driver</a></li>
+			<li><a href="#"><?php echo $lang['DASHBOARD'] ?></a></li>
+			<li><a href="#"><?php echo $lang['MANAGE_DRIVER'] ?></a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
@@ -27,10 +38,10 @@ require_once '../include/Config.php';
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>
-							<th>STT</th>
-							<th>Họ tên</th>
-							<th>Giấy phép lái xe</th>
-							<th>Tình trạng</th>
+							<th><?php echo $lang['ORDINAL'] ?></th>
+							<th><?php echo $lang['NAME'] ?></th>
+							<th><?php echo $lang['DRIVER_LICENSE'] ?></th>
+							<th><?php echo $lang['STATE'] ?></th>
 							<th></th>
 						</tr>
 					</thead>

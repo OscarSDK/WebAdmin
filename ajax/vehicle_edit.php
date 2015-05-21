@@ -1,12 +1,6 @@
 <?php
 	session_start();
 	require_once '../include/Config.php';
-	if (!isset($_SESSION["staff_api_key"])) {
-		header('Location: ../ajax/login.php');
-		die();
-	}
-
-	require_once '../include/Config.php';
 	// Set language for website
 	if(isset($_COOKIE['lang'])) {
 		if ($_COOKIE['lang'] == "vi") {
@@ -18,11 +12,16 @@
 	    setcookie('lang', 'en', time() + (86400 * 365), "/");
 	}
 
-	if (!isset($_SESSION["user"])) {
-		header('Location: ../index.php#ajax/user_list.php');
+	if (!isset($_SESSION["staff_api_key"])) {
+		header('Location: ../ajax/login.php');
+		die();
+	}
+
+	if (!isset($_SESSION["vehicle"])) {
+		header('Location: ../index.php#ajax/vehicle_list.php');
 		die();
 	} else {
-		$user = $_SESSION["user"];
+		$user = $_SESSION["vehicle"];
 	}
 ?>
 
@@ -33,8 +32,8 @@
 		</a>
 		<ol class="breadcrumb pull-left">
 			<li><a href="#"><?php echo $lang['DASHBOARD'] ?></a></li>
-			<li><a href="#"><?php echo $lang['USER_MANAGE'] ?></a></li>
-			<li><a href="#"><?php echo $lang['USER_DETAILS'] ?></a></li>
+			<li><a href="#"><?php echo $lang['MANAGE_VEHICLE'] ?></a></li>
+			<li><a href="#"><?php $lang['VEHICLE_DETAILS'] ?></a></li>
 		</ol>
 		<div id="social" class="pull-right">
 			<a href="#"><i class="fa fa-google-plus"></i></a>
@@ -49,48 +48,21 @@
 	<div class="col-xs-12 col-sm-12">
 		<div class="box">
 			<div class="box-content">
-				<form method='POST' action='controller/user.php' class="form-horizontal" role="form">
+				<form method='POST' action='controller/vehicle.php' class="form-horizontal" role="form">
 					<div class="form-group">
-						<img class="img-rounded col-sm-4" src="data:image/jpeg;base64,<?php echo $user['link_avatar'] ?>" alt="">
 						<div class="col-sm-8">
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['NAME'] ?></label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['LICENSE_PLATE'] ?></label>
 								<div class="col-sm-6">
-								<input disabled type="text" class="form-control" placeholder="Full name" value="<?php echo $user['fullname'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Họ và tên" name="fullname">
+								<input disabled type="text" class="form-control" placeholder="License plate" value="<?php echo $user['license_plate'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Biến số" name="license_plate">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['PHONE'] ?></label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['TYPE'] ?></label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Last name" value="<?php echo $user['phone'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Số điện thoại" name="phone">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['EMAIL'] ?></label>
-								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Email" value="<?php echo $user['email'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Địa chỉ email" name="email">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['PERSONAL_ID'] ?></label>
-								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Chứng minh nhân dân" value="<?php echo $user['personalID'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Chứng minh nhân dân" name="personalID">
-								</div>
-								<div class="col-sm-1">
-									<a target="_blank" href="ajax/personal_id.php#<?php echo $user['personalID_img'] ?>" onclick="return popup('ajax/personal_id.php#<?php echo $user['personalID_img'] ?>')" type="button" 
-										class="btn btn-primary btn-app-sm btn-circle"><i class="fa fa-camera"></i>
-									</a>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['CREATE_DAY'] ?></label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" value="<?php echo $user['created_at'] ?>"
-									disabled data-toggle="tooltip" data-placement="bottom" title="Ngày tạo tài khoản">
+								<input disabled type="text" class="form-control" placeholder="Type" value="<?php echo $user['type'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="Loại xe" name="type">
 								</div>
 							</div>
 							<div class="form-group">
@@ -99,7 +71,7 @@
 									<div class="toggle-switch toggle-switch-success">
 										<label>
 											<input name="status" type="hidden" value="<?php echo $user['status']?>">
-											<input <?php echo $user['status']==4?'checked':'' ?> type="checkbox" name="identify">
+											<input <?php echo $user['status']==2?'checked':'' ?> type="checkbox" name="identify">
 											<div class="toggle-switch-inner"></div>
 											<div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
 										</label>
@@ -107,11 +79,11 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['LEVEL'] ?></label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['STATE'] ?></label>
 								<div class="col-sm-6">
 									<input type='hidden' name='status' value='<?php echo $user['status'] ?>'/>
 									<?php
-										$percent = round($user['status']/4*100);
+										$percent = round($user['status']/2*100);
 									?>
 									<div class="progress">
 										<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $percent ?>" 
@@ -121,19 +93,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['LOCK_ACCOUNT'] ?></label>
-								<div class="col-sm-6">
-									<div class="toggle-switch toggle-switch-success">
-										<label>
-											<input <?php echo $user['locked']==true?'checked':'' ?> type="checkbox" name="locked">
-											<div class="toggle-switch-inner"></div>
-											<div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
-										</label>
-									</div>
-								</div>
-							</div>
-							<input type='hidden' name='user_id' value='<?php echo $user['user_id'] ?>'/>
+							<input type='hidden' name='vehicle_id' value='<?php echo $user['vehicle_id'] ?>'/>
 							<input type='hidden' name='act' value='edit'/>
 						</div>
 					</div>
