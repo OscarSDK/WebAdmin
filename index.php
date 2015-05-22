@@ -3,6 +3,7 @@ session_start();
 //Set language for website
 if (isset($_GET["lang"])) {
 	setcookie('lang', $_GET["lang"], time() + (86400 * 365), "/");
+	header("location: http://localhost/webadmin/index.php");
 }
 
 if(isset($_COOKIE['lang'])) {

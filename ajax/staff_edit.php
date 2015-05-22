@@ -46,11 +46,13 @@
 	<div class="col-xs-12 col-sm-12">
 		<div class="box">
 			<div class="box-content">
-				<form method='POST' action='controller/staff.php' class="form-horizontal" role="form">
+				<form method='POST' action='controller/staff.php' class="form-horizontal" role="form" enctype="multipart/form-data">
 					<div class="form-group">
-						<input type="file" name="fileToUpload" id="fileToUpload">
-						<a href=""><img id="avatar" class="img-rounded col-sm-4" src="data:image/jpeg;base64,<?php echo isset($staff['link_avatar'])?$staff['link_avatar']:'' ?>" alt=""></a>
-
+						<input type="file" name="imageID" id="upImage">
+							<img id="avatar" onclick="$('#fileToUpload').trigger('click')" class="img-rounded col-sm-4" 
+							src="data:image/jpeg;base64,<?php echo isset($staff['link_avatar'])?$staff['link_avatar']:'' ?>" alt="">
+							<input type="file" name="fileToUpload" id="fileToUpload" style="display: none;" />
+							<input id="link_avatar" name="link_avatar" type="hidden" value="<?php echo isset($staff['link_avatar'])?$staff['link_avatar']:'' ?>">
 						<div class="col-sm-8">
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['NAME'] ?></label>
@@ -127,6 +129,32 @@
 	</div>
 </div>
 <script type="text/javascript">
+//Set image for field
+function readURL(input,id) {
+	
+	var url = input.value;
+    var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+    var file = input.files[0];
+
+    if(file.size > 358400){	
+
+    	showError("File size is not big than 350KB!");
+
+    }else {
+
+    	if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $(id).attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }else {
+        	showError("Please add the image!");
+            }	
+    } 
+}
 // Run Select2 plugin on elements
 function DemoSelect2(){
 	$('#s2_with_tag').select2({placeholder: "Select OS"});
@@ -151,13 +179,14 @@ function readURL(input,id) {
 
      showError("File size is not big than 350KB!");
 
-    }else {
+    } else {
 
      if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
                 $(id).attr('src', e.target.result);
+                $("#link_avatar").val(e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]);
@@ -167,6 +196,13 @@ function readURL(input,id) {
     }
 }
 $(document).ready(function() {
+	$('#fileToUpload').change(function(){
+		readURL(this,"#avatar");              	             				            
+	});
+
+	$('#upImage').change(function(){
+	    readURL(this,'#avatar');
+	});
 	// Create Wysiwig editor for textare
 	TinyMCEStart('#wysiwig_simple', null);
 	TinyMCEStart('#wysiwig_full', 'extreme');

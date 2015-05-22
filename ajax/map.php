@@ -11,14 +11,16 @@
 listMarker = [];
 // Create a function that the hub can call to broadcast messages.
 chat.client.getPos = function (uid, pos) {
-	var latlng = pos.split(',');
+	var latlng = pos.split('#');
 
-	if(listMarker[uid] == undefined) {
-	    marker = L.marker([latlng[0], latlng[1]], {icon: myIcon}).addTo(map);
-	    listMarker[uid] = marker;
-	} else {
-	    listMarker[uid].setLatLng([latlng[0], latlng[1]]);
-	    listMarker[uid].update();
+	if (latlng[2] == "d") {
+		if(listMarker[uid] == undefined) {
+		    marker = L.marker([latlng[0], latlng[1]], {icon: myIcon}).addTo(map);
+		    listMarker[uid] = marker;
+		} else {
+		    listMarker[uid].setLatLng([latlng[0], latlng[1]]);
+		    listMarker[uid].update();
+		}
 	}
 
 };

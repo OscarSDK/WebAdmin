@@ -52,7 +52,7 @@ if(isset($_COOKIE['lang'])) {
 						$api_key = $_SESSION["staff_api_key"];
 						$ch = curl_init();
 
-						curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/feedback");
+						curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/feedback?lang=".$_COOKIE['lang']);
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 						curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
@@ -71,7 +71,7 @@ if(isset($_COOKIE['lang'])) {
 							<td><?php echo $i++ ?></td>
 							<td><?php echo $value->{'name'}==NULL?' ':$value->{'name'} ?></td>
 							<td><?php echo $value->{'email'}==NULL?' ':$value->{'email'} ?></td>
-							<td><?php echo $value->{'email'}==NULL?' ':$value->{'content'} ?></td>
+							<td><?php echo $value->{'content'}==NULL?' ':$value->{'content'} ?></td>
 							<td>
 								<a href="controller/feedback.php?feedback_id=<?php echo $value->{'feedback_id'} ?>
 								&act=delete" 

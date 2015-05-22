@@ -8,6 +8,16 @@ if (isset($_SESSION["staff_api_key"])) {
 	die();
 }
 
+if(isset($_COOKIE['lang'])) {
+	if ($_COOKIE['lang'] == "vi") {
+		require_once '../include/lang_vi.php';
+	} else {
+		require_once '../include/lang_en.php';
+	}
+} else {
+    setcookie('lang', 'en', time() + (86400 * 365), "/");
+}
+
 if (isset($_POST['email']) && isset($_POST['password'])) {
 	$email = $_POST['email'];
 	$password = $_POST['password'];
@@ -17,7 +27,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 	//Initial curl
 	$ch = curl_init();
 
-	curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/login");
+	curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/login?lang=".$_COOKIE['lang']);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 

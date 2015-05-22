@@ -64,6 +64,11 @@
 									<input disabled type="text" class="form-control" placeholder="Last name" value="<?php echo $user['driver_license'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Giấy phép lái xe" name="driver_license">
 								</div>
+								<div class="col-sm-1">
+									<a target="_blank" href="ajax/personal_id.php#<?php echo $user['driver_license_img'] ?>" onclick="return popup('ajax/personal_id.php#<?php echo $user['driver_license_img'] ?>')" type="button" 
+										class="btn btn-primary btn-app-sm btn-circle"><i class="fa fa-camera"></i>
+									</a>
+								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['VALIDATED'] ?></label>

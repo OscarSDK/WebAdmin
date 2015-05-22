@@ -15,7 +15,7 @@ if ((isset($_GET['act']) && isset($_GET['vehicle_id'])) || (isset($_POST['act'])
 
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/vehicle/".$vehicle_id);
+		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/vehicle/".$vehicle_id."?lang=".$_COOKIE['lang']);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
@@ -51,7 +51,7 @@ if ((isset($_GET['act']) && isset($_GET['vehicle_id'])) || (isset($_POST['act'])
 
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/vehicle/".$vehicle_id);
+		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/vehicle/".$vehicle_id."?lang=".$_COOKIE['lang']);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['staff_api_key']));

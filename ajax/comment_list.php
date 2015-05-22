@@ -39,9 +39,9 @@ if(isset($_COOKIE['lang'])) {
 					<thead>
 						<tr>
 							<th><?php echo $lang['ORDINAL'] ?></th>
-							<th><?php echo $lang['LICENSE_PLATE'] ?></th>
-							<th><?php echo $lang['TYPE'] ?></th>
-							<th><?php echo $lang['STATE'] ?></th>
+							<th><?php echo $lang['NAME_USER_COMMENT'] ?></th>
+							<th><?php echo $lang['NAME_COMMENT_ABOUT_USER'] ?></th>
+							<th><?php echo $lang['CONTENT'] ?></th>
 							<th></th>
 						</tr>
 					</thead>
@@ -52,7 +52,7 @@ if(isset($_COOKIE['lang'])) {
 						$api_key = $_SESSION["staff_api_key"];
 						$ch = curl_init();
 
-						curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/vehicle");
+						curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff/comment?lang=".$_COOKIE['lang']);
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 						curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
@@ -63,31 +63,19 @@ if(isset($_COOKIE['lang'])) {
 						curl_close($ch);
 
 						$json = json_decode($result);
-						$res = $json->{'vehicles'};
+						$res = $json->{'comments'};
 						$i = 1;
 						foreach ($res as $value) {
 						?>
 						<tr>
 							<td><?php echo $i++ ?></td>
-							<td><?php echo $value->{'license_plate'}==NULL?' ':$value->{'license_plate'} ?></td>
-							<td><?php echo $value->{'type'}==NULL?' ':$value->{'type'} ?></td>
-							<td><?php 
-									$percent = round($value->{'status'}/2*100);
-									if ($percent <= 50) {
-										$color = 'progress-bar-danger';
-									} else {
-										$color = 'progress-bar-success';
-									}
-								?>		
-								<div class="progress">
-									<div class="progress-bar <?php echo $color ?>" role="progressbar" aria-valuenow="<?php echo $percent ?>" 
-											aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent ?>%;">
-										<span><?php echo $percent ?>%</span>
-									</div>
-								</div>
-							</td>
-							<td><a href="controller/vehicle.php?vehicle_id=<?php echo $value->{'vehicle_id'} ?>&act=view" 
-									class="btn btn-warning btn-app-sm btn-circle"><i class="fa fa-edit"></i></a>
+							<td><?php echo $value->{'fn1'}==NULL?' ':$value->{'fn1'} ?></td>
+							<td><?php echo $value->{'fn2'}==NULL?' ':$value->{'fn2'} ?></td>
+							<td><?php echo $value->{'content'}==NULL?' ':$value->{'content'} ?></td>
+							<td>
+								<a href="controller/comment.php?comment_id=<?php echo $value->{'comment_id'} ?>
+								&act=delete" 
+								class="btn btn-danger btn-app-sm btn-circle"><i class="fa fa-trash-o"></i></a> 
 							</td>
 						</tr>
 						<?php

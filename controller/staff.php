@@ -15,7 +15,7 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id);
+		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id."?lang=".$_COOKIE['lang']);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER,array('Authorization: '.$api_key));
 
@@ -37,15 +37,19 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 		$fullname = $_POST['fullname'];
 		$personalID = $_POST['personalID'];
 		$email = $_POST['email'];
+		$link_avatar = $_POST['link_avatar'];
+		$link_avatar = substr($link_avatar, 22);
+
 		$data = array(
 			'fullname' => $fullname,
 			'email' => $email,
-			'personalID' => $personalID
+			'personalID' => $personalID,
+			'link_avatar' => $link_avatar
 		);
 
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id);
+		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id."?lang=".$_COOKIE['lang']);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_setopt($ch,CURLOPT_HTTPHEADER, array('Authorization: '.$_SESSION['staff_api_key']));
@@ -71,7 +75,7 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 		//Initial curl
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id);
+		curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id."?lang=".$_COOKIE['lang']);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
 		curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['staff_api_key']));
@@ -97,7 +101,7 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 			//Initial curl
 			$ch = curl_init();
 
-			curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id);
+			curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staffs/".$staff_id."?lang=".$_COOKIE['lang']);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
 			curl_setopt($ch,CURLOPT_HTTPHEADER,array('Authorization: '.$_SESSION['staff_api_key']));
@@ -139,15 +143,19 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 	$fullname = $_POST['fullname'];
 	$personalID = $_POST['personalID'];
 	$email = $_POST['email'];
+	$link_avatar = $_POST['link_avatar'];
+	$link_avatar = substr($link_avatar, 22);
+
 	$data = array(
 		'fullname' => $fullname,
 		'email' => $email,
-		'personalID' => $personalID
+		'personalID' => $personalID,
+		'link_avatar' => $link_avatar
 	);
 
 	$ch = curl_init();
 
-	curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff");
+	curl_setopt($ch, CURLOPT_URL, REST_HOST."/RESTFul/v1/staff?lang=".$_COOKIE['lang']);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch,CURLOPT_HTTPHEADER, array('Authorization: '.$_SESSION['staff_api_key']));
@@ -159,7 +167,11 @@ if ((isset($_GET['act']) && isset($_GET['staff_id'])) || (isset($_POST['act']) &
 	// close curl resource to free up system resources
 	curl_close($ch);
 
+	print_r($result);
+
 	$json = json_decode($result);
+
+	//print_r($result);
 
 	if (!$json->{'error'}) {
 		$_SESSION['message'] = $json->{'message'};

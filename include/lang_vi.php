@@ -77,4 +77,6 @@ $lang['LOCK_SCREEN']        = 'Khóa màn hình!';
 $lang['MANAGE_COMMENT']     = 'Quản lí bình luận';
 $lang['MANAGE_FEEDBACK']    = 'Quản lí phản hồi';
 $lang['CONTENT']            = 'Nội dung';
+$lang['NAME_USER_COMMENT']  = 'Người bình luận';
+$lang['NAME_COMMENT_ABOUT_USER']  = 'Bình luận về';
 ?>

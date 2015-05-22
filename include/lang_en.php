@@ -76,4 +76,6 @@ $lang['RS_TEAM']            = 'RideSharing team';
 $lang['MANAGE_COMMENT']        = 'Manage comment';
 $lang['MANAGE_FEEDBACK']        = 'Manage feedback';
 $lang['CONTENT']            = 'Content';
+$lang['NAME_USER_COMMENT']  = 'User comment';
+$lang['NAME_COMMENT_ABOUT_USER']  = 'Comment about';
 ?>
