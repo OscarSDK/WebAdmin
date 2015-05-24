@@ -49,7 +49,7 @@ function LoadLeafletScript(callback){
 // Create Leaflet Fullscreen Map
 //
 function FullScreenLeafletMap(){
-	map = L.map('full-map').setView([16.435077, 107.631705], 13);
+	map = L.map('full-map').setView([16.06583612, 108.20202827], 11);
 		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		maxZoom: 18

@@ -57,12 +57,27 @@
 								<input disabled type="text" class="form-control" placeholder="License plate" value="<?php echo $user['license_plate'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Biến số" name="license_plate">
 								</div>
+								<div class="col-sm-1">
+									<a target="_blank" href="ajax/personal_id.php#<?php echo $user['license_plate_img'] ?>" onclick="return popup('ajax/personal_id.php#<?php echo $user['license_plate_img'] ?>')" type="button" 
+										class="btn btn-primary btn-app-sm btn-circle"><i class="fa fa-camera"></i>
+									</a>
+								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['TYPE'] ?></label>
 								<div class="col-sm-6">
 								<input disabled type="text" class="form-control" placeholder="Type" value="<?php echo $user['type'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="Loại xe" name="type">
+								</div>
+								<div class="col-sm-1">
+									<a target="_blank" href="ajax/personal_id.php#<?php echo $user['vehicle_img'] ?>" onclick="return popup('ajax/personal_id.php#<?php echo $user['vehicle_img'] ?>')" type="button" 
+										class="btn btn-primary btn-app-sm btn-circle"><i class="fa fa-camera"></i>
+									</a>
+								</div>
+								<div class="col-sm-1">
+									<a target="_blank" href="ajax/personal_id.php#<?php echo $user['motor_insurance_img'] ?>" onclick="return popup('ajax/personal_id.php#<?php echo $user['motor_insurance_img'] ?>')" type="button" 
+										class="btn btn-primary btn-app-sm btn-circle"><i class="fa fa-camera"></i>
+									</a>
 								</div>
 							</div>
 							<div class="form-group">

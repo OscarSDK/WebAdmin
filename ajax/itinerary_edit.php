@@ -54,64 +54,80 @@
 
 						<div class="col-sm-8">
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Tài Xế:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['DRIVER'] ?>:</label>
 								<div class="col-sm-6">
-								<input disabled type="text" class="form-control" placeholder="Tài xế" value="<?php echo $itinerary['fullname'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Tài Xế" name="driver_id">
+								<input disabled type="text" class="form-control" placeholder="<?php echo $lang['DRIVER'] ?>" value="<?php echo $itinerary['fullname'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['DRIVER'] ?>" name="driver_id">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Hành Khách:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['CUSTOMER'] ?>:</label>
 								<div class="col-sm-6">
-								<input disabled type="text" class="form-control" placeholder="Hành Khách" value="<?php echo $itinerary['customer_id'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Họ và tên" name="customer_id">
+								<input disabled type="text" class="form-control" placeholder="<?php echo $lang['CUSTOMER'] ?>" value="<?php echo $itinerary['customer_id'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['CUSTOMER'] ?>" name="customer_id">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Điểm Đi:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['DEPARTURE'] ?>:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Điểm Đi" value="<?php echo $itinerary['start_address'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Điểm Đi" name="phone">
+									<input disabled type="text" class="form-control" placeholder="<?php echo $lang['DEPARTURE'] ?>" value="<?php echo $itinerary['start_address'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['DEPARTURE'] ?>" name="phone">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Tọa Độ Đi:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['DESTINATION'] ?>:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Tọa Độ Đi" value="<?php echo $itinerary['start_address'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Tọa Độ Đi" name="phone">
+									<input disabled type="text" class="form-control" placeholder="<?php echo $lang['DESTINATION'] ?>" value="<?php echo $itinerary['end_address'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['DESTINATION'] ?>" name="email">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Điểm Đến:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['PICK_UP'] ?>:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Điểm Đến" value="<?php echo $itinerary['end_address'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Điểm Đến" name="email">
+									<input disabled type="text" class="form-control" placeholder="<?php echo $lang['PICK_UP'] ?>" value="<?php echo $itinerary['pick_up_address'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['PICK_UP'] ?>" name="phone">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Tọa Độ Đến:</label>
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['DROP'] ?>:</label>
 								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Tọa Độ Đến" value="<?php echo $itinerary['start_address'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Tọa Độ Đến" name="phone">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label" style="text-align:left">Thời Gian:</label>
-								<div class="col-sm-6">
-									<input disabled type="text" class="form-control" placeholder="Thời Gian" value="<?php echo $itinerary['leave_time'] ?>"
-									data-toggle="tooltip" data-placement="bottom" title="Thời Gian:" name="personalID">
-								</div>
-								<div class="col-sm-1">
-									<a target="_blank" href="ajax/personal_id.php#<?php echo $itinerary['personalID_img'] ?>" onclick="return popup('ajax/personal_id.php#<?php echo $itinerary['personalID_img'] ?>')" type="button" 
-										class="btn btn-primary btn-app-sm btn-circle"><i class="fa fa-camera"></i>
-									</a>
+									<input disabled type="text" class="form-control" placeholder="<?php echo $lang['DROP'] ?>" value="<?php echo $itinerary['drop_address'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['DROP'] ?>" name="email">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left">Ngày tạo:</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" value="<?php echo $itinerary['created_at'] ?>"
+									<input type="text" class="form-control" value="<?php echo $itinerary['leave_date'] ?>"
 									disabled data-toggle="tooltip" data-placement="bottom" title="Ngày tạo tài khoản">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['DURATION'] ?>:</label>
+								<div class="col-sm-6">
+									<input disabled type="text" class="form-control" placeholder="<?php echo $lang['DURATION'] ?>" value="<?php echo $itinerary['duration'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['DURATION'] ?>:" name="personalID">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['DISTANCE'] ?>:</label>
+								<div class="col-sm-6">
+									<input disabled type="text" class="form-control" placeholder="<?php echo $lang['DISTANCE'] ?>" value="<?php echo $itinerary['distance'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['DISTANCE'] ?>:" name="personalID">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['COST'] ?>:</label>
+								<div class="col-sm-6">
+									<input disabled type="text" class="form-control" placeholder="<?php echo $lang['COST'] ?>" value="<?php echo $itinerary['cost'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['COST'] ?>:" name="personalID">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['DESCRIPTION'] ?>:</label>
+								<div class="col-sm-6">
+									<input disabled type="text" class="form-control" placeholder="<?php echo $lang['DESCRIPTION'] ?>" value="<?php echo $itinerary['description'] ?>"
+									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['DESCRIPTION'] ?>:" name="personalID">
 								</div>
 							</div>
 							
@@ -126,12 +142,6 @@
 							<span><i class="fa fa-clock-o txt-danger"></i></span>
 								<?php echo $lang['BACK'] ?>
 							</a>
-						</div>
-						<div class="col-sm-2">
-							<button type="submit" class="btn btn-primary btn-label-left">
-							<span><i class="fa fa-clock-o"></i></span>
-								<?php echo $lang['UPDATE'] ?>
-							</button>
 						</div>
 					</div>
 				</form>

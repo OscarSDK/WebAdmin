@@ -2,7 +2,7 @@
 <html lang='vi'>
 <head>
 	<meta charset="utf-8">
- 	<title><?php echo $lang['Personal ID'] ?></title>
+ 	<title>Information</title>
 </head>
 <body>
 	<div id="PID" </div>
