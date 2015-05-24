@@ -87,27 +87,19 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 
 		$json = json_decode($result);
 
-		echo $_SESSION['staff_api_key'];
-		print_r($itinerary_id);
-		//echo $ch;
-		print_r($json);
+		if (!$json->{'error'}) {
+			$_SESSION['message'] = $json->{'message'};
+		} else {
+			$_SESSION['message'] = $json->{'message'};
+		}
 
-		//if (!$json->{'error'}) {
-		//	$_SESSION['message'] = $json->{'message'};
-		//} else {
-		//	$_SESSION['message'] = $json->{'message'};
-		//}
-
-		echo "right h";
-
-		//header('Location: ../index.php#ajax/itinerary_list.php');
-		//die();
+		header('Location: ../index.php#ajax/itinerary_list.php');
+		die();
 	} else {
 		header('Location: ../index.php#ajax/itinerary_list.php');
 		die();
 	}
 } else {
-	echo "hhhhh";
 	header('Location: ../index.php#ajax/itinerary_list.php');
 	die();
 }
