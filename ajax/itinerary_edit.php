@@ -59,12 +59,22 @@
 								<input disabled type="text" class="form-control" placeholder="<?php echo $lang['DRIVER'] ?>" value="<?php echo $itinerary['fullname'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['DRIVER'] ?>" name="driver_id">
 								</div>
+								<div class="col-sm-1">
+									<a target="_blank" href="ajax/personal_id.php#<?php echo $itinerary['link_avatar'] ?>" onclick="return popup('ajax/personal_id.php#<?php echo $itinerary['link_avatar'] ?>')" type="button" 
+										class="btn btn-primary btn-app-sm btn-circle"><i class="fa fa-camera"></i>
+									</a>
+								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label" style="text-align:left"><?php echo $lang['CUSTOMER'] ?>:</label>
 								<div class="col-sm-6">
-								<input disabled type="text" class="form-control" placeholder="<?php echo $lang['CUSTOMER'] ?>" value="<?php echo $itinerary['customer_id'] ?>"
+								<input disabled type="text" class="form-control" placeholder="<?php echo $lang['CUSTOMER'] ?>" value="<?php echo $itinerary['c_fullname'] ?>"
 									data-toggle="tooltip" data-placement="bottom" title="<?php echo $lang['CUSTOMER'] ?>" name="customer_id">
+								</div>
+								<div class="col-sm-1">
+									<a target="_blank" href="ajax/personal_id.php#<?php echo $itinerary['c_linkavatar'] ?>" onclick="return popup('ajax/personal_id.php#<?php echo $itinerary['c_linkavatar'] ?>')" type="button" 
+										class="btn btn-primary btn-app-sm btn-circle"><i class="fa fa-camera"></i>
+									</a>
 								</div>
 							</div>
 							<div class="form-group">

@@ -10,12 +10,36 @@
 <script>
 listMarker = [];
 // Create a function that the hub can call to broadcast messages.
-chat.client.getPos = function (uid, pos) {
+chat.client.getPos = function (uid, iid, pos) {
 	var latlng = pos.split('#');
 
 	if (latlng[2] == "d") {
 		if(listMarker[uid] == undefined) {
 		    marker = L.marker([latlng[0], latlng[1]], {icon: myIcon}).addTo(map);
+
+		    $.ajax({
+				url: "controller/itinerary.php?act=view&map=true&itinerary_id=" + iid, // point to server-side PHP script 
+		        dataType: 'text',  // what to expect back from the PHP script, if anything
+		        cache: false,
+		        contentType: false,
+		        processData: false,      	                
+		        type: 'get',
+		        success: function(string){
+		        	var value = $.parseJSON(string);
+
+		            var infocontent = '<b>From:</b> ' + value['start_address'] + 
+				   '<br><b>To: ' + value['end_address'] + 
+				   '<br><b>Driver: </b>' + value['fullname'] + 
+				   '<br><div><img src="data:image/jpeg;base64,' + value['link_avatar'] + 
+				   '" style="height: 50px; width: 6 0px;"/></div><b>Distance: </b>' + 
+				   value['distance'] + ' KM<br><b>Cost:</b> ' + value['cost'] + 
+				   '<br><a href="controller/itinerary.php?act=view&itinerary_id=' + 
+				   value['itinerary_id'] +'">View detail...</a>';
+
+		    		marker.bindPopup(infocontent);
+		        }
+		    });	
+
 		    listMarker[uid] = marker;
 		} else {
 		    listMarker[uid].setLatLng([latlng[0], latlng[1]]);

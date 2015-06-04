@@ -25,15 +25,17 @@ if ((isset($_GET['act']) && isset($_GET['itinerary_id'])) || (isset($_POST['act'
 		curl_close($ch);
 
 		$itinerary = json_decode($result, true);
-		//$itinerary['itinerary_id'] = $itinerary_id;
+		
+		if (isset($_GET['map'])) {
+			echo $result;
+		} else {
+			if(isset($itinerary)) {
+				$_SESSION['itinerary'] = $itinerary;
+			}
 
-		if(isset($itinerary)) {
-			$_SESSION['itinerary'] = $itinerary;
-			//echo "here"; 
+			header('Location: ../index.php#ajax/itinerary_edit.php');
+			die();
 		}
-
-		header('Location: ../index.php#ajax/itinerary_edit.php');
-		die();
 	} else if ($act == 'edit') {
 		$locked = isset($_POST['locked'])?1:0;
 		$status = $_POST['status'];
